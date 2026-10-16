@@ -99,6 +99,7 @@ footer{text-align:center;color:var(--muted);font-size:12px;padding:10px 0 30px}
 <section id="a" class="hide">
  <div class="card" id="lg"><div class="st"><i>🔒</i>เข้าสู่ระบบเจ้าหน้าที่ รพ.สต.คลองจระเข้</div><input id="pin" type="password" placeholder="กรอกรหัสผ่านเจ้าหน้าที่"><button class="btn" id="li">เข้าสู่ระบบ</button></div>
  <div id="ad" class="hide">
+   <div class="card" id="staff-line-id-card" style="display:none"><div class="st"><i>🆔</i>LINE User ID สำหรับตั้งค่ารับแจ้งเตือน</div><div class="hint" style="text-align:left">คัดลอกรหัสนี้ไปใส่ใน Script Properties ชื่อ <b>ADMIN_LINE_USER_IDS</b> (หากมีเจ้าหน้าที่หลายคนให้คั่นด้วยเครื่องหมายจุลภาค)</div><div id="staff-line-id" style="padding:10px;background:#f4f1ea;border-radius:8px;word-break:break-all;user-select:all;font-size:13px"></div></div>
   <div class="card"><div class="st"><i>🗓️</i><div>ภาพรวมปฏิทินคิวรายเดือน<br><small style="font-weight:300;color:var(--muted)">คลิกเลือกวันที่ต้องการจัดการคิว</small></div></div>
    <div class="ch"><button id="acprev">‹</button><b id="amt"></b><button id="acnext">›</button></div><div class="cg" id="acg"></div></div>
   <div class="card"><div class="st"><i>📋</i>รายการคิววันที่: <span id="ldt" style="font-size:14px;color:var(--primary)"></span></div><div id="bl"></div></div>
@@ -190,13 +191,15 @@ $('#go').onclick=async()=>{
  err();$('#done').classList.add('hide');
  const nm=$('#nm').value.trim(),ph=$('#ph').value.replace(/\D/g,'');
  if(!S.service||!S.date||!S.time)return err('กรุณาเลือกบริการ วัน และช่วงเวลาให้ครบถ้วน');
+ if(!lineUserId)return err('กรุณาเปิดหน้านี้ผ่าน LINE และเข้าสู่ระบบก่อนจอง เพื่อให้ระบบบันทึก LINE User ID และแจ้งผลการจองได้');
  if(!nm)return err('กรุณากรอกชื่อ - นามสกุลผู้รับบริการ');
  if(!/^0\d{8,9}$/.test(ph))return err('กรุณากรอกเบอร์โทรศัพท์มือถือให้ถูกต้อง (10 หลัก)');
  const b=$('#go');b.disabled=true;b.textContent='กำลังส่งคำขอ...';
  try{
-  const r=await run('createBooking',{service:S.service,date:S.date,time:S.time,name:nm,phone:ph,lineUserId});
+  const lineIdToken=getLineIdToken();
+  const r=await run('createBooking',{service:S.service,date:S.date,time:S.time,name:nm,phone:ph,lineIdToken});
   const x=$('#done');x.classList.remove('hide');
-  x.innerHTML=`<div class="big">🌿</div><h2>ส่งคำขอจองคิวสำเร็จ</h2><div class="hint">${esc(r.notificationMessage)}</div>`;
+  x.innerHTML=`<div class="big">🌿</div><h2>ส่งคำขอจองคิวสำเร็จ</h2><div class="hint">${esc(r.notificationMessage)}</div>${r.adminNotificationSent?'':'<div class="err" style="text-align:left;margin-top:12px">ระบบยังส่งแจ้งเตือนเจ้าหน้าที่ไม่สำเร็จ กรุณาติดต่อ รพ.สต.คลองจระเข้เพื่อให้เจ้าหน้าที่ตรวจสอบรายการจอง</div>'}`;
   x.scrollIntoView({behavior:'smooth'});S={};
  }catch(e){err(e)}
  draw();b.disabled=false;b.textContent='ยืนยันส่งคำขอจองคิว';
@@ -207,7 +210,7 @@ async function loadMyHistory(){
  if(!lineUserId){box.innerHTML='<div class="hint">กรุณาเปิดใช้งานผ่านแอปพลิเคชัน LINE เพื่อดูประวัติส่วนตัว</div>';return;}
  box.innerHTML='<div class="hint">กำลังโหลดข้อมูลประวัติ...</div>';
  try{
-  const list=await run('getUserHistory',lineUserId);
+  const list=await run('getUserHistory',getLineIdToken());
   box.innerHTML=list.length?list.map(b=>`
    <div class="item">
     <div>
@@ -267,25 +270,42 @@ async function loadAdminDay(){
 
 $('#li').onclick=()=>busy($('#li'),async()=>{
  err();pin=$('#pin').value;await run('verifyAdmin',pin);
- $('#lg').classList.add('hide');$('#ad').classList.remove('hide');loadAdminCal();
+ $('#lg').classList.add('hide');$('#ad').classList.remove('hide');
+ if(lineUserId){$('#staff-line-id').textContent=lineUserId;$('#staff-line-id-card').style.display='block';}
+ loadAdminCal();
 });
 $('#pin').onkeydown=e=>{if(e.key=='Enter')$('#li').click()};
+
+function getLineIdToken(){
+ if(!window.liff || !liff.isLoggedIn()) throw new Error('กรุณาเข้าสู่ระบบผ่าน LINE ก่อน');
+ const token=liff.getIDToken();
+ if(!token) throw new Error('ไม่พบ LINE ID token กรุณาตรวจสอบว่า LIFF เปิด scope “openid” และเข้าสู่ระบบใหม่');
+ return token;
+}
 
 async function init(){
  draw();
  try{
-  if(LIFF_ID && LIFF_ID!='2012052461-iCqWd1tf'){
+  if(LIFF_ID){
    await liff.init({liffId:LIFF_ID});
-   if(liff.isLoggedIn()){
-    const p=await liff.getProfile();
-    lineUserId=p.userId;
-    $('#hi').textContent='ยินดีต้อนรับ คุณ'+p.displayName+' 👋';
-    if(!$('#nm').value)$('#nm').value=p.displayName;
-   }else{
+   if(!liff.isLoggedIn()){
     $('#lgn-box').innerHTML='<button class="lgn" onclick="liff.login()">เข้าสู่ระบบด้วย LINE</button>';
+    $('#hi').textContent='กรุณาเข้าสู่ระบบด้วย LINE เพื่อจองคิวและรับผลการยืนยัน';
+    return;
    }
-  }else{$('#hi').textContent='ระบบจองคิวคลินิกแพทย์แผนไทย';}
- }catch(_){$('#hi').textContent='ระบบจองคิวคลินิกแพทย์แผนไทย';}
+   const p=await liff.getProfile();
+   lineUserId=p.userId;
+   $('#hi').textContent='ยินดีต้อนรับ คุณ'+p.displayName+' 👋';
+   if(!$('#nm').value)$('#nm').value=p.displayName;
+   if(!liff.getIDToken()) $('#hi').textContent='บัญชี LINE พร้อมใช้งาน แต่ต้องเปิด scope openid ใน LINE Developers ก่อนจองคิว';
+  }else{
+   $('#hi').textContent='กรุณาตั้งค่า LIFF ID ก่อนใช้งาน';
+  }
+ }catch(e){
+  console.error(e);
+  $('#hi').textContent='เชื่อมต่อ LINE ไม่สำเร็จ กรุณาเปิดลิงก์ผ่าน LINE และตรวจสอบการตั้งค่า LIFF';
+  $('#lgn-box').innerHTML='<button class="lgn" onclick="location.reload()">ลองเชื่อมต่ออีกครั้ง</button>';
+ }
 }
 init();
 </script></body></html>
