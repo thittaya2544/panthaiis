@@ -64,6 +64,7 @@ footer{text-align:center;color:var(--muted);font-size:12px;padding:10px 0 30px}
 .cd.td{border-color:var(--accent);background:#fffcf5}
 .cd.on{background:linear-gradient(135deg,var(--primary),var(--secondary));color:#fff;border-color:transparent}
 .cd:disabled{background:#f4f1ea;color:#b8b2a3;border-color:transparent;cursor:default}
+.off-form{display:grid;gap:8px}.off-form input{margin-bottom:6px}.off-list{margin-top:8px}.off-actions{display:flex;align-items:center;gap:8px}.off-actions .btn{flex:none}.off-reason{font-size:13px;color:var(--muted);margin-top:3px}.off-message{padding:10px 12px;border-radius:10px;font-size:13px;margin-top:10px;background:#e8f8f0;color:#176545}.off-message.error{background:#fdecea;color:#a93226}
 </style></head><body>
 <div class="hero"><div class="in">
  <span class="badge">🌿 รพ.สต.คลองจระเข้</span>
@@ -99,21 +100,19 @@ footer{text-align:center;color:var(--muted);font-size:12px;padding:10px 0 30px}
 <section id="a" class="hide">
  <div class="card" id="lg"><div class="st"><i>🔒</i>เข้าสู่ระบบเจ้าหน้าที่ รพ.สต.คลองจระเข้</div><input id="pin" type="password" placeholder="กรอกรหัสผ่านเจ้าหน้าที่"><button class="btn" id="li">เข้าสู่ระบบ</button></div>
  <div id="ad" class="hide">
+   <div class="card" id="staff-line-id-card" style="display:none"><div class="st"><i>🆔</i>LINE User ID สำหรับตั้งค่ารับแจ้งเตือน</div><div class="hint" style="text-align:left">คัดลอกรหัสนี้ไปใส่ใน Script Properties ชื่อ <b>ADMIN_LINE_USER_IDS</b> (หากมีเจ้าหน้าที่หลายคนให้คั่นด้วยเครื่องหมายจุลภาค)</div><div id="staff-line-id" style="padding:10px;background:#f4f1ea;border-radius:8px;word-break:break-all;user-select:all;font-size:13px"></div></div>
+  <div class="card">
+   <div class="st"><i>🏖️</i><div>จัดการวันหยุด / วันปิดบริการ<br><small style="font-weight:300;color:var(--muted)">วันที่เพิ่มจะถูกปิดไม่ให้ผู้รับบริการจองคิว</small></div></div>
+   <div class="off-form">
+    <label for="off-date">วันที่ปิดบริการ</label><input id="off-date" type="date" required>
+    <label for="off-reason">เหตุผลการปิดบริการ</label><input id="off-reason" maxlength="200" placeholder="เช่น วันหยุดนักขัตฤกษ์ / อบรมเจ้าหน้าที่" required>
+    <button class="btn" id="save-dayoff">บันทึกวันหยุด</button>
+   </div>
+   <div id="off-msg" class="off-message" style="display:none" role="status"></div>
+   <div class="off-list" id="off-list"><div class="hint">กำลังโหลดรายการวันหยุด...</div></div>
+  </div>
   <div class="card"><div class="st"><i>🗓️</i><div>ภาพรวมปฏิทินคิวรายเดือน<br><small style="font-weight:300;color:var(--muted)">คลิกเลือกวันที่ต้องการจัดการคิว</small></div></div>
    <div class="ch"><button id="acprev">‹</button><b id="amt"></b><button id="acnext">›</button></div><div class="cg" id="acg"></div></div>
-  
-  <!-- ส่วนจัดการวันหยุด / วันลา / วันติดธุระ -->
-  <div class="card">
-   <div class="st"><i>🏖️</i>จัดการวันลาหยุด / วันติดธุระ</div>
-   <div class="field"><label for="dayOffDate">วันที่ต้องการตั้งเป็นวันหยุด</label><input id="dayOffDate" type="date"></div>
-   <div class="field"><label for="dayOffReason">เหตุผล / ข้อความแจ้งผู้จอง</label><input id="dayOffReason" maxlength="120" value="แพทย์แผนไทยติดธุระ / ลาหยุด"></div>
-   <div class="right" style="margin-top:8px">
-    <button class="btn s" onclick="saveDayOff()">บันทึกวันหยุด/ลา</button>
-    <button class="btn s d" onclick="deleteDayOff()">ยกเลิกวันหยุด/ลา</button>
-   </div>
-   <div id="adminDayOffStatus" class="notice" style="margin-top:10px">สถานะวัน: ปกติ</div>
-  </div>
-
   <div class="card"><div class="st"><i>📋</i>รายการคิววันที่: <span id="ldt" style="font-size:14px;color:var(--primary)"></span></div><div id="bl"></div></div>
  </div>
 </section>
@@ -121,7 +120,7 @@ footer{text-align:center;color:var(--muted);font-size:12px;padding:10px 0 30px}
 </div>
 
 <script>
-const API_URL = 'https://script.google.com/macros/s/AKfycbwSbSsQXxi4cCgurwKmdSY2bA3mrynG-7--WxW_d_iFFZC2Kwd_8WXFis_8RQnvKmBC/exec';
+const API_URL = 'https://script.google.com/macros/s/AKfycbxEGYFozuo_BKCoLuguHHaUkBTwaGhOQEfx1Aklv1lpUR7k9RSnL76oiiu9FLaQ1iEz/exec';
 const LIFF_ID = '2012052461-iCqWd1tf';
 const AHEAD_MONTHS = 3;
 
@@ -203,13 +202,15 @@ $('#go').onclick=async()=>{
  err();$('#done').classList.add('hide');
  const nm=$('#nm').value.trim(),ph=$('#ph').value.replace(/\D/g,'');
  if(!S.service||!S.date||!S.time)return err('กรุณาเลือกบริการ วัน และช่วงเวลาให้ครบถ้วน');
+ if(!lineUserId)return err('กรุณาเปิดหน้านี้ผ่าน LINE และเข้าสู่ระบบก่อนจอง เพื่อให้ระบบบันทึก LINE User ID และแจ้งผลการจองได้');
  if(!nm)return err('กรุณากรอกชื่อ - นามสกุลผู้รับบริการ');
  if(!/^0\d{8,9}$/.test(ph))return err('กรุณากรอกเบอร์โทรศัพท์มือถือให้ถูกต้อง (10 หลัก)');
  const b=$('#go');b.disabled=true;b.textContent='กำลังส่งคำขอ...';
  try{
-  const r=await run('createBooking',{service:S.service,date:S.date,time:S.time,name:nm,phone:ph,lineUserId});
+  const lineIdToken=getLineIdToken();
+  const r=await run('createBooking',{service:S.service,date:S.date,time:S.time,name:nm,phone:ph,lineIdToken});
   const x=$('#done');x.classList.remove('hide');
-  x.innerHTML=`<div class="big">🌿</div><h2>ส่งคำขอจองคิวสำเร็จ</h2><div class="hint">${esc(r.notificationMessage)}</div>`;
+  x.innerHTML=`<div class="big">🌿</div><h2>ส่งคำขอจองคิวสำเร็จ</h2><div class="hint">${esc(r.notificationMessage)}</div>${r.adminNotificationSent?'':'<div class="err" style="text-align:left;margin-top:12px">ระบบยังส่งแจ้งเตือนเจ้าหน้าที่ไม่สำเร็จ กรุณาติดต่อ รพ.สต.คลองจระเข้เพื่อให้เจ้าหน้าที่ตรวจสอบรายการจอง</div>'}`;
   x.scrollIntoView({behavior:'smooth'});S={};
  }catch(e){err(e)}
  draw();b.disabled=false;b.textContent='ยืนยันส่งคำขอจองคิว';
@@ -220,7 +221,7 @@ async function loadMyHistory(){
  if(!lineUserId){box.innerHTML='<div class="hint">กรุณาเปิดใช้งานผ่านแอปพลิเคชัน LINE เพื่อดูประวัติส่วนตัว</div>';return;}
  box.innerHTML='<div class="hint">กำลังโหลดข้อมูลประวัติ...</div>';
  try{
-  const list=await run('getUserHistory',lineUserId);
+  const list=await run('getUserHistory',getLineIdToken());
   box.innerHTML=list.length?list.map(b=>`
    <div class="item">
     <div>
@@ -233,21 +234,19 @@ async function loadMyHistory(){
 
 let AV_Y=new Date().getFullYear(),AV_M=new Date().getMonth(),adminDate=TODAY,pin='';
 async function loadAdminCal(){
+ const monthStart=key(new Date(AV_Y,AV_M,1)),monthEnd=key(new Date(AV_Y,AV_M+1,0));
+ let monthStatus={dayOffs:{}};
+ try{monthStatus=await run('getMonthStatus',monthStart,monthEnd)||monthStatus}catch(e){}
+ const dayOffs=monthStatus.dayOffs||{};
  $('#amt').textContent=MN[AV_M]+' '+(AV_Y+543);
  const first=new Date(AV_Y,AV_M,1).getDay(),n=new Date(AV_Y,AV_M+1,0).getDate();
  let h=['อา','จ','อ','พ','พฤ','ศ','ส'].map(x=>`<div class="cw">${x}</div>`).join('')+'<div></div>'.repeat(first);
  for(let d=1;d<=n;d++){
-  const k=key(new Date(AV_Y,AV_M,d));
-  h+=`<button class="cd${adminDate==k?' on':''}" data-v="${k}">${d}</button>`;
+  const k=key(new Date(AV_Y,AV_M,d)),isOff=Object.prototype.hasOwnProperty.call(dayOffs,k);
+  h+=`<button class="cd${adminDate==k?' on':''}${isOff?' td':''}" data-v="${k}">${d}${isOff?'<small>หยุด</small>':''}</button>`;
  }
  $('#acg').innerHTML=h;
- $('#acg').querySelectorAll('.cd').forEach(b=>b.onclick=()=>{
-  adminDate=b.dataset.v;
-  $('#dayOffDate').value=adminDate;
-  loadAdminCal();
-  loadAdminDay();
- });
- $('#dayOffDate').value=adminDate;
+ $('#acg').querySelectorAll('.cd').forEach(b=>b.onclick=()=>{adminDate=b.dataset.v;loadAdminCal();loadAdminDay()});
  loadAdminDay();
 }
 $('#acprev').onclick=()=>{if(--AV_M<0){AV_M=11;AV_Y--}loadAdminCal()};
@@ -255,23 +254,11 @@ $('#acnext').onclick=()=>{if(++AV_M>11){AV_M=0;AV_Y++}loadAdminCal()};
 
 async function loadAdminDay(){
  $('#ldt').textContent=th(adminDate);
- $('#dayOffDate').value=adminDate;
  try{
   const r=await run('getAdminData',pin,adminDate);
-  
-  // จัดการสถานะวันหยุดในหน้า Admin
-  const statusEl = $('#adminDayOffStatus');
-  if(r.dayOff){
-   statusEl.textContent = 'สถานะวัน: หยุด (' + r.dayOff.reason + ')';
-   statusEl.className = 'notice warn';
-   $('#dayOffReason').value = r.dayOff.reason;
-  }else{
-   statusEl.textContent = 'สถานะวัน: เปิดทำการปกติ';
-   statusEl.className = 'notice';
-  }
-
   const bk=r.bookings||[];
-  $('#bl').innerHTML=bk.length?bk.map(b=>`
+  const offNotice=r.dayOff?`<div class="sum" style="margin-bottom:10px">🏖️ <b>วันหยุด:</b> ${esc(r.dayOff.reason||'ปิดทำการ')}</div>`:'';
+  $('#bl').innerHTML=offNotice+(bk.length?bk.map(b=>`
    <div class="item">
     <div>
      <div class="t">${esc(b.time)} น. · ${esc(b.service)} <span class="badge-status badge-${b.status.toLowerCase()}">${b.status=='PENDING'?'รออนุมัติ':b.status=='CONFIRMED'?'ยืนยันแล้ว':'ยกเลิก'}</span></div>
@@ -281,7 +268,7 @@ async function loadAdminDay(){
      ${b.status=='PENDING'?`<button class="btn s" data-conf="${b.id}">ยืนยัน</button>`:''}
      ${b.status!='CANCELLED'?`<button class="btn s d" data-canc="${b.id}">ยกเลิก</button>`:''}
     </div>
-   </div>`).join(''):'<div class="hint">ไม่มีรายการจองในวันนี้</div>';
+   </div>`).join(''):'<div class="hint">ไม่มีรายการจองในวันนี้</div>');
 
   $('#bl').querySelectorAll('[data-conf]').forEach(btn=>btn.onclick=()=>busy(btn,async()=>{
    await run('confirmBooking',pin,btn.dataset.conf);
@@ -297,54 +284,110 @@ async function loadAdminDay(){
  }catch(e){err(e)}
 }
 
-async function saveDayOff(){
- const date = $('#dayOffDate').value;
- const reason = $('#dayOffReason').value;
- if(!date) return alert('กรุณาเลือกวันที่ต้องการกำหนดเป็นวันหยุด');
- if(!confirm('ต้องการตั้งวันที่ ' + th(date) + ' เป็นวันหยุด/ลา ใช่หรือไม่?')) return;
- try{
-  await run('addDayOff', pin, date, reason);
-  alert('บันทึกวันหยุด/ลาเรียบร้อยแล้ว');
-  MS={}; // เคลียร์แคชเดือนเพื่อให้ปฏิทินอัปเดต
-  loadAdminDay();
-  loadAdminCal();
- }catch(e){alert(e.message || e);}
+function showDayOffMessage(message,isError){
+ const box=$('#off-msg');
+ box.textContent=message||'';
+ box.classList.toggle('error',!!isError);
+ box.style.display=message?'block':'none';
 }
 
-async function deleteDayOff(){
- const date = $('#dayOffDate').value;
- if(!date) return alert('กรุณาเลือกวันที่');
- if(!confirm('ต้องการยกเลิกสถานะวันหยุดของวันที่ ' + th(date) + ' กลับเป็นวันเปิดทำการปกติ ใช่หรือไม่?')) return;
+async function loadAdminDayOffs(){
+ const box=$('#off-list');
+ box.innerHTML='<div class="hint">กำลังโหลดรายการวันหยุด...</div>';
  try{
-  await run('removeDayOff', pin, date);
-  alert('ยกเลิกวันหยุดเรียบร้อยแล้ว');
-  MS={};
-  loadAdminDay();
-  loadAdminCal();
- }catch(e){alert(e.message || e);}
+  const items=await run('getAdminDayOffs',pin);
+  box.innerHTML=items.length?items.map(item=>`
+   <div class="item">
+    <div style="flex:1;min-width:0">
+     <div class="t">📅 ${esc(th(item.date))}</div>
+     <div class="off-reason">${esc(item.reason)}</div>
+    </div>
+    <div class="off-actions">
+     <button class="btn s" data-edit-off="${esc(item.date)}" data-reason="${esc(item.reason)}">แก้ไข</button>
+     <button class="btn s d" data-remove-off="${esc(item.date)}">ลบ</button>
+    </div>
+   </div>`).join(''):'<div class="hint">ยังไม่มีวันหยุดที่บันทึกไว้</div>';
+
+  box.querySelectorAll('[data-edit-off]').forEach(btn=>btn.onclick=()=>{
+   $('#off-date').value=btn.dataset.editOff;
+   $('#off-reason').value=btn.dataset.reason||'';
+   $('#off-date').focus();
+   showDayOffMessage('แก้ไขเหตุผลของวันหยุดได้ แล้วกด “บันทึกวันหยุด”',false);
+   $('#off-date').scrollIntoView({behavior:'smooth',block:'center'});
+  });
+  box.querySelectorAll('[data-remove-off]').forEach(btn=>btn.onclick=()=>busy(btn,async()=>{
+   if(!confirm('ต้องการลบวันหยุด '+th(btn.dataset.removeOff)+' ใช่หรือไม่? วันที่นี้จะกลับมาเปิดให้จองได้ตามเงื่อนไขวันและเวลาของคลินิก'))return;
+   await run('deleteDayOff',pin,btn.dataset.removeOff);
+   showDayOffMessage('ลบวันหยุดเรียบร้อยแล้ว',false);
+   await refreshAfterDayOffChange_();
+  }));
+ }catch(e){box.innerHTML='<div class="hint">โหลดรายการวันหยุดไม่สำเร็จ</div>';showDayOffMessage(e.message||String(e),true)}
 }
+
+async function refreshAfterDayOffChange_(){
+ MS={};AV={};
+ await loadAdminDayOffs();
+ await loadAdminCal();
+ renderCal();
+ if(S.date){
+  try{await av(S.date,true)}catch(e){}
+  draw();
+ }
+}
+
+$('#save-dayoff').onclick=()=>busy($('#save-dayoff'),async()=>{
+ showDayOffMessage('',false);
+ const date=$('#off-date').value;
+ const reason=$('#off-reason').value.trim();
+ if(!date)throw new Error('กรุณาเลือกวันที่ปิดบริการ');
+ if(!reason)throw new Error('กรุณาระบุเหตุผลการปิดบริการ');
+ const result=await run('addDayOff',pin,date,reason);
+ $('#off-reason').value='';
+ showDayOffMessage(result.message||'บันทึกวันหยุดเรียบร้อยแล้ว',false);
+ await refreshAfterDayOffChange_();
+});
 
 $('#li').onclick=()=>busy($('#li'),async()=>{
  err();pin=$('#pin').value;await run('verifyAdmin',pin);
- $('#lg').classList.add('hide');$('#ad').classList.remove('hide');loadAdminCal();
+ $('#lg').classList.add('hide');$('#ad').classList.remove('hide');
+ $('#off-date').min=TODAY;
+ if(!$('#off-date').value)$('#off-date').value=TODAY;
+ if(lineUserId){$('#staff-line-id').textContent=lineUserId;$('#staff-line-id-card').style.display='block';}
+ loadAdminCal();
+ loadAdminDayOffs();
 });
 $('#pin').onkeydown=e=>{if(e.key=='Enter')$('#li').click()};
+
+function getLineIdToken(){
+ if(!window.liff || !liff.isLoggedIn()) throw new Error('กรุณาเข้าสู่ระบบผ่าน LINE ก่อน');
+ const token=liff.getIDToken();
+ if(!token) throw new Error('ไม่พบ LINE ID token กรุณาตรวจสอบว่า LIFF เปิด scope “openid” และเข้าสู่ระบบใหม่');
+ return token;
+}
 
 async function init(){
  draw();
  try{
-  if(LIFF_ID && LIFF_ID!='2012052461-iCqWd1tf'){
+  if(LIFF_ID){
    await liff.init({liffId:LIFF_ID});
-   if(liff.isLoggedIn()){
-    const p=await liff.getProfile();
-    lineUserId=p.userId;
-    $('#hi').textContent='ยินดีต้อนรับ คุณ'+p.displayName+' 👋';
-    if(!$('#nm').value)$('#nm').value=p.displayName;
-   }else{
+   if(!liff.isLoggedIn()){
     $('#lgn-box').innerHTML='<button class="lgn" onclick="liff.login()">เข้าสู่ระบบด้วย LINE</button>';
+    $('#hi').textContent='กรุณาเข้าสู่ระบบด้วย LINE เพื่อจองคิวและรับผลการยืนยัน';
+    return;
    }
-  }else{$('#hi').textContent='ระบบจองคิวคลินิกแพทย์แผนไทย';}
- }catch(_){$('#hi').textContent='ระบบจองคิวคลินิกแพทย์แผนไทย';}
+   const p=await liff.getProfile();
+   lineUserId=p.userId;
+   $('#hi').textContent='ยินดีต้อนรับ คุณ'+p.displayName+' 👋';
+   if(!$('#nm').value)$('#nm').value=p.displayName;
+   if(!liff.getIDToken()) $('#hi').textContent='บัญชี LINE พร้อมใช้งาน แต่ต้องเปิด scope openid ใน LINE Developers ก่อนจองคิว';
+  }else{
+   $('#hi').textContent='กรุณาตั้งค่า LIFF ID ก่อนใช้งาน';
+  }
+ }catch(e){
+  console.error(e);
+  $('#hi').textContent='เชื่อมต่อ LINE ไม่สำเร็จ กรุณาเปิดลิงก์ผ่าน LINE และตรวจสอบการตั้งค่า LIFF';
+  $('#lgn-box').innerHTML='<button class="lgn" onclick="location.reload()">ลองเชื่อมต่ออีกครั้ง</button>';
+ }
 }
 init();
 </script></body></html>
