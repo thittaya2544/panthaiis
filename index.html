@@ -11,7 +11,7 @@
 <style>
 :root{--green:#244235;--green2:#436d59;--gold:#c59b27;--goldbg:#fdf8e2;--bg:#fbf8f1;--card:#fff;--text:#2c2c2c;--muted:#787878;--border:#e4dcce;--red:#a93226;--blue:#286090}
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}body{margin:0;font-family:Prompt,sans-serif;background:var(--bg);color:var(--text);line-height:1.55}
-.hero{background:linear-gradient(135deg,#1b3228,var(--green),#355848);border-bottom:4px solid var(--gold);color:#fff;text-align:center;padding:34px 18px 66px}.hero .tag{display:inline-block;color:#f3dda4;border:1px solid #8d762f;background:#ffffff14;padding:5px 14px;border-radius:40px;font-size:12px}.hero h1{font-size:24px;margin:10px 0 2px}.hero p{margin:0;color:#e8e2d2;font-size:13px}.hero .welcome{margin-top:10px;font-size:13px}.wrap{max-width:760px;margin:-36px auto 0;padding:0 14px;position:relative}.tabs{display:flex;gap:5px;padding:6px;background:white;border:1px solid var(--border);box-shadow:0 6px 22px #24423512;border-radius:50px;margin-bottom:16px}.tabs button{flex:1;border:0;background:transparent;color:var(--muted);padding:10px 6px;border-radius:40px;font:inherit;font-size:13px;cursor:pointer}.tabs button.active{background:linear-gradient(135deg,var(--green),var(--green2));color:#fff;font-weight:600}.card{background:var(--card);border:1px solid var(--border);border-radius:18px;padding:19px;margin-bottom:14px;box-shadow:0 4px 18px #2442350b}.title{display:flex;align-items:center;gap:10px;color:var(--green);font-weight:600;margin:0 0 14px}.title .num{display:grid;place-items:center;background:var(--goldbg);color:#a17d18;border:1px solid #e7d9a8;width:31px;height:31px;border-radius:50%;font-size:13px;flex:none}.services{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.service{border:1.5px solid var(--border);background:#fff;text-align:left;border-radius:14px;padding:14px;font:inherit;cursor:pointer;color:var(--text)}.service strong{display:block;color:var(--green);font-size:14px}.service span{font-size:12px;color:var(--muted)}.service.active{border-color:var(--gold);background:#fffcf5}.monthhead{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:10px}.monthhead strong{color:var(--green)}.monthhead button{height:36px;width:36px;border:1px solid var(--border);border-radius:50%;background:white;color:var(--green);font-size:20px;cursor:pointer}.calendar{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:5px}.weekday{text-align:center;color:var(--muted);font-size:11px;padding:5px 0}.day{min-height:43px;border:1px solid var(--border);border-radius:9px;background:#fff;font:inherit;font-size:13px;cursor:pointer;color:var(--text);padding:3px 0}.day small{display:block;font-size:9px;color:#bb483d;line-height:1.1}.day.selected{background:linear-gradient(135deg,var(--green),var(--green2));border-color:var(--green);color:#fff}.day.today{border-color:var(--gold)}.day:disabled{background:#f2f0eb;color:#b6b2a9;border-color:transparent;cursor:not-allowed}.timegrid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:9px}.timebtn{padding:13px 5px;border:1.5px solid var(--border);border-radius:12px;background:white;font:inherit;font-size:14px;cursor:pointer}.timebtn.active{background:var(--green);color:white;border-color:var(--green)}.timebtn:disabled{background:#f4f1ea;color:#b5b0a1;border-color:transparent;text-decoration:line-through;cursor:not-allowed}.hint{color:var(--muted);font-size:12px;text-align:center;padding:10px 0}.field{margin-bottom:13px}label{display:block;font-size:13px;color:var(--muted);margin:0 0 5px 2px}input,textarea{width:100%;border:1.5px solid var(--border);border-radius:11px;padding:12px 13px;background:white;color:var(--text);font:inherit;outline:none}input:focus,textarea:focus{border-color:var(--green)}input[readonly]{background:#f7f5f0;color:#526257}.summary{background:var(--goldbg);border:1px dashed #dec875;color:#5a4710;border-radius:12px;padding:12px;margin:12px 0;font-size:13px}.btn{border:0;border-radius:12px;background:linear-gradient(135deg,var(--green),var(--green2));color:white;font:inherit;font-weight:600;padding:13px 16px;cursor:pointer}.btn:disabled{opacity:.55;cursor:not-allowed}.btn.full{width:100%}.btn.small{padding:7px 12px;font-size:12px;border-radius:8px}.btn.light{background:white;color:var(--green);border:1px solid var(--green)}.btn.danger{background:white;color:var(--red);border:1px solid #f0b9b4}.statusmsg{font-size:13px;border-radius:10px;padding:10px 12px;background:#edf7ef;color:#245a35;margin-top:10px}.statusmsg.warn{background:#fff3d5;color:#805b00}.alert{padding:13px 15px;border-radius:12px;margin-bottom:14px;font-size:13px;background:#fdecea;color:#a52720;border:1px solid #f5c6cb}.hidden{display:none!important}.linebtn{border:1px solid #0a8f42;background:#06c755;color:white;border-radius:25px;padding:9px 17px;font:inherit;font-size:13px;cursor:pointer}.booking-item{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;padding:13px 0;border-bottom:1px dashed var(--border)}.booking-item:last-child{border-bottom:0}.booking-item .meta{font-size:12px;color:var(--muted);margin-top:4px}.booking-item strong{color:var(--green);font-size:14px}.pill{display:inline-block;padding:3px 8px;border-radius:20px;font-size:10px;font-weight:600;margin-left:4px}.pill.pending{color:#7d6608;background:#fcf3cf}.pill.confirmed{color:#117a65;background:#e8f8f5}.pill.cancelled{color:#78281f;background:#f5b7b1}.staffrow{display:flex;flex-wrap:wrap;gap:8px;justify-content:flex-end}.note{font-size:12px;color:var(--muted);margin-top:6px}.two{display:grid;grid-template-columns:1fr 1fr;gap:10px}.footer{text-align:center;color:var(--muted);font-size:11px;padding:22px 0 30px}
+.hero{background:linear-gradient(135deg,#1b3228,var(--green),#355848);border-bottom:4px solid var(--gold);color:#fff;text-align:center;padding:34px 18px 66px}.hero .tag{display:inline-block;color:#f3dda4;border:1px solid #8d762f;background:#ffffff14;padding:5px 14px;border-radius:40px;font-size:12px}.hero h1{font-size:24px;margin:10px 0 2px}.hero p{margin:0;color:#e8e2d2;font-size:13px}.hero .welcome{margin-top:10px;font-size:13px}.wrap{max-width:760px;margin:-36px auto 0;padding:0 14px;position:relative}.tabs{display:flex;gap:5px;padding:6px;background:white;border:1px solid var(--border);box-shadow:0 6px 22px #24423512;border-radius:50px;margin-bottom:16px}.tabs button{flex:1;border:0;background:transparent;color:var(--muted);padding:10px 6px;border-radius:40px;font:inherit;font-size:13px;cursor:pointer}.tabs button.active{background:linear-gradient(135deg,var(--green),var(--green2));color:#fff;font-weight:600}.card{background:var(--card);border:1px solid var(--border);border-radius:18px;padding:19px;margin-bottom:14px;box-shadow:0 4px 18px #2442350b}.title{display:flex;align-items:center;gap:10px;color:var(--green);font-weight:600;margin:0 0 14px}.title .num{display:grid;place-items:center;background:var(--goldbg);color:#a17d18;border:1px solid #e7d9a8;width:31px;height:31px;border-radius:50%;font-size:13px;flex:none}.services{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.service{border:1.5px solid var(--border);background:#fff;text-align:left;border-radius:14px;padding:14px;font:inherit;cursor:pointer;color:var(--text)}.service strong{display:block;color:var(--green);font-size:14px}.service span{font-size:12px;color:var(--muted)}.service.active{border-color:var(--gold);background:#fffcf5}.monthhead{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:10px}.monthhead strong{color:var(--green)}.monthhead button{height:36px;width:36px;border:1px solid var(--border);border-radius:50%;background:white;color:var(--green);font-size:20px;cursor:pointer}.monthhead button:disabled{opacity:.4;cursor:not-allowed}.calendar{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:5px}.weekday{text-align:center;color:var(--muted);font-size:11px;padding:5px 0}.day{min-height:43px;border:1px solid var(--border);border-radius:9px;background:#fff;font:inherit;font-size:13px;cursor:pointer;color:var(--text);padding:3px 0}.day small{display:block;font-size:9px;color:#bb483d;line-height:1.1}.day.selected{background:linear-gradient(135deg,var(--green),var(--green2));border-color:var(--green);color:#fff}.day.selected small{color:#ffd9d4}.day.today{border-color:var(--gold)}.day:disabled{background:#f2f0eb;color:#b6b2a9;border-color:transparent;cursor:not-allowed}.timegrid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:9px}.timebtn{padding:13px 5px;border:1.5px solid var(--border);border-radius:12px;background:white;font:inherit;font-size:14px;cursor:pointer}.timebtn.active{background:var(--green);color:white;border-color:var(--green)}.timebtn:disabled{background:#f4f1ea;color:#b5b0a1;border-color:transparent;text-decoration:line-through;cursor:not-allowed}.hint{color:var(--muted);font-size:12px;text-align:center;padding:10px 0}.field{margin-bottom:13px}label{display:block;font-size:13px;color:var(--muted);margin:0 0 5px 2px}input,textarea{width:100%;border:1.5px solid var(--border);border-radius:11px;padding:12px 13px;background:white;color:var(--text);font:inherit;outline:none}input:focus,textarea:focus{border-color:var(--green)}input[readonly]{background:#f7f5f0;color:#526257}.summary{background:var(--goldbg);border:1px dashed #dec875;color:#5a4710;border-radius:12px;padding:12px;margin:12px 0;font-size:13px}.btn{border:0;border-radius:12px;background:linear-gradient(135deg,var(--green),var(--green2));color:white;font:inherit;font-weight:600;padding:13px 16px;cursor:pointer}.btn:disabled{opacity:.55;cursor:not-allowed}.btn.full{width:100%}.btn.small{padding:7px 12px;font-size:12px;border-radius:8px}.btn.light{background:white;color:var(--green);border:1px solid var(--green)}.btn.danger{background:white;color:var(--red);border:1px solid #f0b9b4}.statusmsg{font-size:13px;border-radius:10px;padding:10px 12px;background:#edf7ef;color:#245a35;margin-top:10px}.statusmsg.warn{background:#fff3d5;color:#805b00}.statusmsg a{color:inherit;font-weight:600}.alert{padding:13px 15px;border-radius:12px;margin-bottom:14px;font-size:13px;background:#fdecea;color:#a52720;border:1px solid #f5c6cb}.hidden{display:none!important}.linebtn{border:1px solid #0a8f42;background:#06c755;color:white;border-radius:25px;padding:9px 17px;font:inherit;font-size:13px;cursor:pointer}.booking-item{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;padding:13px 0;border-bottom:1px dashed var(--border)}.booking-item:last-child{border-bottom:0}.booking-item .meta{font-size:12px;color:var(--muted);margin-top:4px}.booking-item strong{color:var(--green);font-size:14px}.pill{display:inline-block;padding:3px 8px;border-radius:20px;font-size:10px;font-weight:600;margin-left:4px}.pill.pending{color:#7d6608;background:#fcf3cf}.pill.confirmed{color:#117a65;background:#e8f8f5}.pill.cancelled{color:#78281f;background:#f5b7b1}.staffrow{display:flex;flex-wrap:wrap;gap:8px;justify-content:flex-end}.note{font-size:12px;color:var(--muted);margin-top:6px}.two{display:grid;grid-template-columns:1fr 1fr;gap:10px}.footer{text-align:center;color:var(--muted);font-size:11px;padding:22px 0 30px}
 @media(max-width:480px){.hero h1{font-size:21px}.card{padding:15px}.tabs button{font-size:11.5px}.calendar{gap:3px}.day{min-height:39px;border-radius:7px}.services{grid-template-columns:1fr}.booking-item{flex-direction:column}.staffrow{justify-content:flex-start}.two{grid-template-columns:1fr}}
 </style>
 </head>
@@ -50,6 +50,7 @@
     </div>
     <div class="card">
       <h2 class="title"><span class="num">4</span>ข้อมูลผู้จอง</h2>
+      <div id="friendNotice" class="statusmsg warn hidden" style="margin:0 0 13px"></div>
       <div class="field"><label for="patientName">ชื่อโปรไฟล์ LINE</label><input id="patientName" readonly placeholder="เข้าสู่ระบบ LINE เพื่อดึงชื่อ"></div>
       <div class="field"><label for="phone">เบอร์โทรศัพท์มือถือ 10 หลัก</label><input id="phone" type="tel" inputmode="numeric" maxlength="10" placeholder="เช่น 0812345678" autocomplete="tel"><div class="note">LINE Login ปกติไม่เปิดเผยเบอร์โทรศัพท์ ผู้จองต้องกรอกเบอร์ที่ติดต่อได้</div></div>
       <div class="summary" id="summary">กรุณาเลือกบริการ วันที่ และเวลา</div>
@@ -67,9 +68,9 @@
       <h2 class="title">🔐 เข้าสู่ระบบเจ้าหน้าที่</h2>
       <div class="field"><label for="adminPassword">รหัสผ่านเจ้าหน้าที่</label><input id="adminPassword" type="password" placeholder="กรอกรหัสผ่าน" autocomplete="current-password"></div>
       <button class="btn full" id="adminLogin" type="button">เข้าสู่ระบบ</button>
-     
     </div>
     <div id="adminPanel" class="hidden">
+      <div id="adminMsg" class="statusmsg hidden" role="status" style="margin:0 0 14px"></div>
       <div class="card">
         <h2 class="title">🗓️ ปฏิทินจัดการคิว</h2>
         <div class="monthhead"><button id="adminPrevMonth" type="button" aria-label="เดือนก่อน">‹</button><strong id="adminMonthLabel"></strong><button id="adminNextMonth" type="button" aria-label="เดือนถัดไป">›</button></div>
@@ -93,7 +94,10 @@
 'use strict';
 const API_URL = 'https://script.google.com/macros/s/AKfycbwSbSsQXxi4cCgurwKmdSY2bA3mrynG-7--WxW_d_iFFZC2Kwd_8WXFis_8RQnvKmBC/exec';
 const LIFF_ID = '2012052461-iCqWd1tf';
+const OA_ADD_FRIEND_URL = ''; // ใส่ลิงก์เพิ่มเพื่อน LINE OA เช่น https://line.me/R/ti/p/@xxxxxxx (เว้นว่างได้)
 const AHEAD_MONTHS = 3;
+const MONTH_CACHE_MS = 60000;
+const DAY_CACHE_MS = 30000;
 const SLOTS = ['09:00','09:30','10:00','10:30','11:00','11:30'];
 const SERVICES = [
   {name:'นวดแผนไทย',icon:'💆',description:'นวดผ่อนคลายกล้ามเนื้อ บรรเทาอาการปวดตึง'},
@@ -104,83 +108,84 @@ const key = date => date.getFullYear()+'-'+String(date.getMonth()+1).padStart(2,
 const dateObj = text => new Date(text+'T00:00:00');
 const thaiDate = text => dateObj(text).toLocaleDateString('th-TH',{weekday:'short',day:'numeric',month:'short',year:'numeric'});
 const escapeHtml = value => String(value == null ? '' : value).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-const today = key(new Date());
-const maxDate = (()=>{const d=new Date();d.setMonth(d.getMonth()+AHEAD_MONTHS);return key(d);})();
+// วันนี้ตามเวลาไทย (ไม่ขึ้นกับ timezone ของเครื่องผู้ใช้) รูปแบบ YYYY-MM-DD
+const today = new Date().toLocaleDateString('sv-SE',{timeZone:'Asia/Bangkok'});
+const todayObj = dateObj(today);
+const maxDate = (()=>{const d=dateObj(today);d.setMonth(d.getMonth()+AHEAD_MONTHS);return key(d);})();
 const monthNames = ['มกราคม','กุมภาพันธ์','มีนาคม','เมษายน','พฤษภาคม','มิถุนายน','กรกฎาคม','สิงหาคม','กันยายน','ตุลาคม','พฤศจิกายน','ธันวาคม'];
 let idToken = '';
 let lineName = '';
 let selected = {service:'',date:'',time:''};
-let availabilityCache = {};
-let monthStatusCache = {};
-let publicMonth = {year:new Date().getFullYear(),month:new Date().getMonth()};
-let adminMonth = {year:new Date().getFullYear(),month:new Date().getMonth()};
+let availabilityCache = {};   // date -> {t, data}
+let monthStatusCache = {};    // 'y-m' -> {t, data}
+let publicMonth = {year:todayObj.getFullYear(),month:todayObj.getMonth()};
+let adminMonth = {year:todayObj.getFullYear(),month:todayObj.getMonth()};
 let adminDate = today;
-let adminPassword = '';
+let adminToken = '';          // session token จากเซิร์ฟเวอร์ (ไม่เก็บรหัสผ่าน)
 
 function showError(message){const box=$('#globalError');box.textContent=message||'';box.classList.toggle('hidden',!message);if(message)window.scrollTo({top:0,behavior:'smooth'});}
 function clearError(){showError('');}
+function showAdminMsg(message,warn){const box=$('#adminMsg');box.textContent=message||'';box.className='statusmsg'+(warn?' warn':'')+(message?'':' hidden');if(message)box.scrollIntoView({behavior:'smooth',block:'nearest'});}
+function invalidateCaches(){availabilityCache={};monthStatusCache={};}
 
 async function api(functionName, ...args) {
   let response;
-
   try {
     response = await fetch(API_URL, {
       method: 'POST',
-      headers: {
-        'Content-Type': 'text/plain;charset=utf-8'
-      },
-      body: JSON.stringify({
-        f: functionName,
-        a: args
-      })
+      headers: {'Content-Type': 'text/plain;charset=utf-8'},
+      body: JSON.stringify({f: functionName, a: args})
     });
   } catch (error) {
     console.error('API network error:', error);
-    throw new Error(
-      'เชื่อมต่อ Google Apps Script ไม่สำเร็จ กรุณาตรวจสอบ URL และการเผยแพร่เว็บแอป'
-    );
+    throw new Error('เชื่อมต่อ Google Apps Script ไม่สำเร็จ กรุณาตรวจสอบอินเทอร์เน็ต, URL และการเผยแพร่เว็บแอป');
   }
-
   let raw;
-
-  try {
-    raw = await response.text();
-  } catch (error) {
-    console.error('API response read error:', error);
-    throw new Error('ไม่สามารถอ่านข้อมูลจากเซิร์ฟเวอร์ได้');
-  }
-
+  try { raw = await response.text(); }
+  catch (error) { console.error('API response read error:', error); throw new Error('ไม่สามารถอ่านข้อมูลจากเซิร์ฟเวอร์ได้'); }
   let data;
-
-  try {
-    data = JSON.parse(raw);
-  } catch (error) {
-    console.error(
-      'Invalid API JSON:',
-      response.status,
-      raw.slice(0, 500)
-    );
-
-    throw new Error(
-      'เซิร์ฟเวอร์ตอบกลับไม่ใช่ JSON (HTTP ' +
-      response.status +
-      ') กรุณาตรวจสอบ URL และ Deployment'
-    );
+  try { data = JSON.parse(raw); }
+  catch (error) {
+    console.error('Invalid API JSON:', response.status, raw.slice(0, 500));
+    throw new Error('เซิร์ฟเวอร์ตอบกลับไม่ใช่ JSON (HTTP ' + response.status + ') กรุณาตรวจสอบ URL และ Deployment');
   }
-
-  if (!response.ok) {
-    throw new Error('เซิร์ฟเวอร์ตอบกลับ HTTP ' + response.status);
-  }
-
-  if (data.ok !== true) {
-    throw new Error(data.error || 'ระบบไม่สามารถดำเนินการได้');
-  }
-
+  if (!response.ok) throw new Error('เซิร์ฟเวอร์ตอบกลับ HTTP ' + response.status);
+  if (data.ok !== true) throw new Error(data.error || 'ระบบไม่สามารถดำเนินการได้');
   return data.data;
 }
 
+// เรียกฟังก์ชันของเจ้าหน้าที่ด้วย session token; หมดอายุแล้วให้กลับหน้าเข้าสู่ระบบ
+async function adminApi(functionName, ...args) {
+  if (!adminToken) throw new Error('กรุณาเข้าสู่ระบบเจ้าหน้าที่');
+  try { return await api(functionName, adminToken, ...args); }
+  catch (e) {
+    if (/หมดเวลาเข้าสู่ระบบ/.test(e.message)) resetAdmin();
+    throw e;
+  }
+}
+function resetAdmin(){
+  adminToken='';$('#adminPassword').value='';showAdminMsg('');
+  $('#adminPanel').classList.add('hidden');$('#adminLoginCard').classList.remove('hidden');
+}
+
 async function withBusy(button, callback){if(button.disabled)return;const original=button.textContent;button.disabled=true;button.textContent='กำลังดำเนินการ...';try{await callback();}catch(e){showError(e.message||String(e));}finally{button.disabled=false;button.textContent=original;}}
-function tokenNow(){if(!window.liff||!liff.isLoggedIn()&&!liff.isInClient())return '';return liff.getIDToken()||'';}
+
+// คืน ID token ที่ยังไม่หมดอายุ; ถ้าใกล้หมดอายุจะพาเข้าสู่ระบบใหม่ (นอก LINE) หรือแจ้งให้เปิดหน้าใหม่ (ใน LINE)
+function tokenNow(){
+  if(!window.liff || !liff.isLoggedIn()) return '';
+  const decoded = liff.getDecodedIDToken ? liff.getDecodedIDToken() : null;
+  if(decoded && decoded.exp && decoded.exp*1000 < Date.now()+60000){
+    if(liff.isInClient()){
+      showError('เซสชัน LINE หมดอายุ กรุณาปิดแล้วเปิดหน้านี้ใหม่อีกครั้ง');
+    }else{
+      showError('เซสชัน LINE หมดอายุ กำลังเข้าสู่ระบบใหม่...');
+      liff.logout();
+      setTimeout(()=>liff.login({redirectUri:location.href}),800);
+    }
+    return '';
+  }
+  return liff.getIDToken() || '';
+}
 
 function drawServices(){
   $('#services').innerHTML=SERVICES.map(s=>`<button type="button" class="service ${selected.service===s.name?'active':''}" data-service="${escapeHtml(s.name)}"><span style="font-size:24px">${s.icon}</span><strong>${escapeHtml(s.name)}</strong><span>${escapeHtml(s.description)}</span></button>`).join('');
@@ -188,30 +193,41 @@ function drawServices(){
 }
 async function loadMonthStatus(year,month){
   const id=year+'-'+month;
-  if(monthStatusCache[id])return monthStatusCache[id];
+  const cached=monthStatusCache[id];
+  if(cached&&Date.now()-cached.t<MONTH_CACHE_MS)return cached.data;
   const start=key(new Date(year,month,1));const end=key(new Date(year,month+1,0));
   const result=await api('getMonthStatus',start,end);
-  monthStatusCache[id]=result||{dayOffs:{},full:[]};return monthStatusCache[id];
+  const data=result||{dayOffs:{},full:[]};
+  monthStatusCache[id]={t:Date.now(),data:data};
+  return data;
 }
 async function renderPublicCalendar(){
   const {year,month}=publicMonth;$('#monthLabel').textContent=monthNames[month]+' '+(year+543);
   const calendar=$('#calendar');calendar.innerHTML='';
   ['อา','จ','อ','พ','พฤ','ศ','ส'].forEach(d=>{const el=document.createElement('div');el.className='weekday';el.textContent=d;calendar.appendChild(el);});
   const status=await loadMonthStatus(year,month);
-  const offset=new Date(year,month,1).getDay();for(let i=0;i<offset;i++){const empty=document.createElement('div');calendar.appendChild(empty);}
+  const offset=new Date(year,month,1).getDay();for(let i=0;i<offset;i++){calendar.appendChild(document.createElement('div'));}
   const count=new Date(year,month+1,0).getDate();
   for(let d=1;d<=count;d++){
     const date=key(new Date(year,month,d));const dow=new Date(year,month,d).getDay();const isOff=Object.prototype.hasOwnProperty.call(status.dayOffs||{},date);const isFull=(status.full||[]).includes(date);const disabled=dow===0||dow===6||date<today||date>maxDate||isOff||isFull;
     const btn=document.createElement('button');btn.type='button';btn.className='day'+(selected.date===date?' selected':'')+(date===today?' today':'');btn.disabled=disabled;btn.dataset.date=date;
     const label=isOff?'หยุด':isFull?'เต็ม':(dow===0||dow===6)?'หยุด':date<today?'ผ่าน':'';
     btn.innerHTML=`${d}${label?`<small>${label}</small>`:''}`;
-    btn.addEventListener('click',async()=>{selected.date=date;selected.time='';drawSummary();await renderPublicCalendar();await loadAvailability(date);});calendar.appendChild(btn);
+    btn.addEventListener('click',async()=>{selected.date=date;selected.time='';drawSummary();await renderPublicCalendar();await loadAvailability(date,true);});calendar.appendChild(btn);
   }
-  $('#prevMonth').disabled=year*12+month<=new Date().getFullYear()*12+new Date().getMonth();
-  $('#nextMonth').disabled=year*12+month>=dateObj(maxDate).getFullYear()*12+dateObj(maxDate).getMonth();
+  const nowIdx=todayObj.getFullYear()*12+todayObj.getMonth();
+  const maxD=dateObj(maxDate);const maxIdx=maxD.getFullYear()*12+maxD.getMonth();
+  $('#prevMonth').disabled=year*12+month<=nowIdx;
+  $('#nextMonth').disabled=year*12+month>=maxIdx;
 }
 async function loadAvailability(date,force){
-  try{if(force||!availabilityCache[date])availabilityCache[date]=await api('getAvailability',date);renderTimes(availabilityCache[date]);}
+  try{
+    const cached=availabilityCache[date];
+    if(force||!cached||Date.now()-cached.t>=DAY_CACHE_MS){
+      availabilityCache[date]={t:Date.now(),data:await api('getAvailability',date)};
+    }
+    renderTimes(availabilityCache[date].data);
+  }
   catch(e){$('#times').innerHTML='';$('#timeHint').textContent=e.message;}
 }
 function renderTimes(info){
@@ -229,22 +245,36 @@ $('#nextMonth').addEventListener('click',async()=>{publicMonth.month++;if(public
 
 $('#submitBooking').addEventListener('click',async()=>withBusy($('#submitBooking'),async()=>{
   clearError();$('#bookingResult').classList.add('hidden');
-  const token=tokenNow();const phone=$('#phone').value.replace(/\D/g,'');
-  if(!token)throw new Error('กรุณาเข้าสู่ระบบผ่าน LINE ก่อนส่งคำขอจอง');
+  const phone=$('#phone').value.replace(/\D/g,'');
+  if(!window.liff||!liff.isLoggedIn())throw new Error('กรุณาเข้าสู่ระบบผ่าน LINE ก่อนส่งคำขอจอง');
   if(!selected.service||!selected.date||!selected.time)throw new Error('กรุณาเลือกบริการ วันที่ และเวลาให้ครบ');
   if(!/^0\d{9}$/.test(phone))throw new Error('กรุณากรอกเบอร์โทรศัพท์มือถือ 10 หลัก');
-  const result=await api('createBooking',{date:selected.date,time:selected.time,service:selected.service,phone:phone,idToken:token});
+  const token=tokenNow();
+  if(!token)return; // tokenNow แสดงข้อความและจัดการเข้าสู่ระบบใหม่ให้แล้ว
+  let result;
+  try{
+    result=await api('createBooking',{date:selected.date,time:selected.time,service:selected.service,phone:phone,idToken:token});
+  }catch(e){
+    // เวลาอาจถูกจองไปแล้ว: ล้างแคชและโหลดสถานะล่าสุด
+    invalidateCaches();selected.time='';drawSummary();
+    renderPublicCalendar().catch(()=>{});
+    if(selected.date)loadAvailability(selected.date,true);
+    throw e;
+  }
   const box=$('#bookingResult');box.classList.remove('hidden');
   box.innerHTML=`<div class="statusmsg">🌿 ${escapeHtml(result.notificationMessage)}<br>รหัสจอง: <strong>${escapeHtml(result.bookingId)}</strong></div>${result.adminNotificationSent?'':'<div class="statusmsg warn">ระบบบันทึกคิวแล้ว แต่ยังยืนยันไม่ได้ว่าส่ง LINE แจ้งเจ้าหน้าที่สำเร็จ กรุณาตรวจ Script Properties และ LINE OA</div>'}${result.userNotificationSent?'':'<div class="note">ไม่สามารถยืนยันการส่ง LINE ถึงผู้จองได้ โปรดตรวจว่าผู้จองเพิ่ม LINE OA เป็นเพื่อนแล้ว</div>'}`;
-  selected={service:'',date:'',time:''};availabilityCache={};monthStatusCache={};$('#phone').value='';drawServices();drawSummary();$('#times').innerHTML='';$('#timeHint').textContent='กรุณาเลือกวันที่ในปฏิทินก่อน';await renderPublicCalendar();box.scrollIntoView({behavior:'smooth',block:'center'});
+  selected={service:'',date:'',time:''};invalidateCaches();$('#phone').value='';drawServices();drawSummary();$('#times').innerHTML='';$('#timeHint').textContent='กรุณาเลือกวันที่ในปฏิทินก่อน';await renderPublicCalendar();box.scrollIntoView({behavior:'smooth',block:'center'});
 }));
 
 async function loadHistory(){
-  const box=$('#historyList');const token=tokenNow();if(!token){box.innerHTML='<div class="hint">กรุณาเปิดระบบผ่าน LINE และเข้าสู่ระบบเพื่อดูประวัติของคุณ</div>';return;}
+  const box=$('#historyList');
+  if(!window.liff||!liff.isLoggedIn()){box.innerHTML='<div class="hint">กรุณาเปิดระบบผ่าน LINE และเข้าสู่ระบบเพื่อดูประวัติของคุณ</div>';return;}
+  const token=tokenNow();
+  if(!token){box.innerHTML='<div class="hint">เซสชัน LINE หมดอายุ กรุณาเข้าสู่ระบบใหม่</div>';return;}
   box.innerHTML='<div class="hint">กำลังโหลด...</div>';
   try{const list=await api('getUserHistory',token);if(!list.length){box.innerHTML='<div class="hint">ยังไม่มีประวัติการจอง</div>';return;}
     box.innerHTML=list.map(item=>{const status=item.status==='PENDING'?'รอเจ้าหน้าที่ยืนยัน':item.status==='CONFIRMED'?'ยืนยันแล้ว':'ยกเลิกแล้ว';const klass=item.status==='PENDING'?'pending':item.status==='CONFIRMED'?'confirmed':'cancelled';return `<div class="booking-item"><div><strong>${escapeHtml(item.service)} <span class="pill ${klass}">${status}</span></strong><div class="meta">📅 ${escapeHtml(thaiDate(item.date))} · ⏰ ${escapeHtml(item.time)} น.</div><div class="meta">รหัสจอง: ${escapeHtml(item.id)}</div></div></div>`;}).join('');
-  }catch(e){box.innerHTML=`<div class="alert">${escapeHtml(e.message)} หาก token หมดอายุ กรุณาปิดแล้วเปิด LIFF ใหม่</div>`;}
+  }catch(e){box.innerHTML=`<div class="alert">${escapeHtml(e.message)}</div>`;}
 }
 
 // ---------- Staff tools ----------
@@ -253,103 +283,90 @@ async function renderAdminCalendar(){
   ['อา','จ','อ','พ','พฤ','ศ','ส'].forEach(d=>{const el=document.createElement('div');el.className='weekday';el.textContent=d;cal.appendChild(el);});
   const offset=new Date(year,month,1).getDay();for(let i=0;i<offset;i++)cal.appendChild(document.createElement('div'));
   const status=await loadMonthStatus(year,month);const n=new Date(year,month+1,0).getDate();
-  for(let d=1;d<=n;d++){const date=key(new Date(year,month,d));const off=Object.prototype.hasOwnProperty.call(status.dayOffs||{},date);const full=(status.full||[]).includes(date);const btn=document.createElement('button');btn.type='button';btn.className='day'+(adminDate===date?' selected':'');btn.dataset.date=date;btn.innerHTML=`${d}${off?'<small>หยุด</small>':full?'<small>เต็ม</small>':''}`;btn.addEventListener('click',()=>selectAdminDate(date));cal.appendChild(btn);}
+  for(let d=1;d<=n;d++){const date=key(new Date(year,month,d));const off=Object.prototype.hasOwnProperty.call(status.dayOffs||{},date);const full=(status.full||[]).includes(date);const btn=document.createElement('button');btn.type='button';btn.className='day'+(adminDate===date?' selected':'')+(date===today?' today':'');btn.dataset.date=date;btn.innerHTML=`${d}${off?'<small>หยุด</small>':full?'<small>เต็ม</small>':''}`;btn.addEventListener('click',()=>selectAdminDate(date));cal.appendChild(btn);}
 }
 async function selectAdminDate(date){adminDate=date;$('#adminDate').value=date;await renderAdminCalendar();await loadAdminDay();}
+async function refreshAfterChange(){invalidateCaches();await loadAdminDay();await renderAdminCalendar();await renderPublicCalendar();}
 $('#adminPrevMonth').addEventListener('click',async()=>{adminMonth.month--;if(adminMonth.month<0){adminMonth.month=11;adminMonth.year--;}await renderAdminCalendar();});
 $('#adminNextMonth').addEventListener('click',async()=>{adminMonth.month++;if(adminMonth.month>11){adminMonth.month=0;adminMonth.year++;}await renderAdminCalendar();});
 $('#adminDate').addEventListener('change',async()=>{if(/^\d{4}-\d{2}-\d{2}$/.test($('#adminDate').value)){const d=dateObj($('#adminDate').value);adminMonth={year:d.getFullYear(),month:d.getMonth()};await selectAdminDate($('#adminDate').value);}});
-$('#adminLogin').addEventListener('click',async()=>withBusy($('#adminLogin'),async()=>{clearError();const password=$('#adminPassword').value;if(!password)throw new Error('กรุณากรอกรหัสผ่านเจ้าหน้าที่');await api('verifyAdmin',password);adminPassword=password;$('#adminLoginCard').classList.add('hidden');$('#adminPanel').classList.remove('hidden');await selectAdminDate(today);}));
+$('#adminLogin').addEventListener('click',async()=>withBusy($('#adminLogin'),async()=>{
+  clearError();const password=$('#adminPassword').value;if(!password)throw new Error('กรุณากรอกรหัสผ่านเจ้าหน้าที่');
+  const res=await api('verifyAdmin',password);
+  adminToken=res.token;$('#adminPassword').value='';
+  $('#adminLoginCard').classList.add('hidden');$('#adminPanel').classList.remove('hidden');
+  adminMonth={year:todayObj.getFullYear(),month:todayObj.getMonth()};
+  await selectAdminDate(today);
+}));
 $('#adminPassword').addEventListener('keydown',e=>{if(e.key==='Enter')$('#adminLogin').click();});
 async function loadAdminDay(){
-  if(!adminPassword)return;$('#adminDayLabel').textContent=thaiDate(adminDate);$('#adminBookings').innerHTML='<div class="hint">กำลังโหลด...</div>';
+  if(!adminToken)return;$('#adminDayLabel').textContent=thaiDate(adminDate);$('#adminBookings').innerHTML='<div class="hint">กำลังโหลด...</div>';
   try{
-    const result=await api('getAdminData',adminPassword,adminDate);const off=result.dayOff;
+    const result=await adminApi('getAdminData',adminDate);const off=result.dayOff;
     if(off){$('#dayOffReason').value=off.reason;$('#dayOffStatus').textContent='สถานะวัน: ปิดทำการ — '+off.reason;$('#dayOffStatus').className='statusmsg warn';}
     else{$('#dayOffStatus').textContent='สถานะวัน: เปิดทำการปกติ';$('#dayOffStatus').className='statusmsg';}
     const bookings=result.bookings||[];
     if(!bookings.length){$('#adminBookings').innerHTML='<div class="hint">ไม่มีรายการจองในวันนี้</div>';return;}
     $('#adminBookings').innerHTML=bookings.map(b=>{const status=b.status==='PENDING'?'รอเจ้าหน้าที่ยืนยัน':b.status==='CONFIRMED'?'ยืนยันแล้ว':'ยกเลิกแล้ว';const klass=b.status==='PENDING'?'pending':b.status==='CONFIRMED'?'confirmed':'cancelled';return `<div class="booking-item"><div><strong>${escapeHtml(b.time)} น. · ${escapeHtml(b.service)} <span class="pill ${klass}">${status}</span></strong><div class="meta">👤 ${escapeHtml(b.name)} · 📞 ${escapeHtml(b.phone)}</div><div class="meta">รหัสจอง: ${escapeHtml(b.id)}</div></div><div class="staffrow">${b.status==='PENDING'?`<button class="btn small" data-confirm="${escapeHtml(b.id)}">ยืนยัน</button>`:''}${b.status!=='CANCELLED'?`<button class="btn small danger" data-cancel="${escapeHtml(b.id)}">ยกเลิก</button>`:''}</div></div>`;}).join('');
-    $('#adminBookings').querySelectorAll('[data-confirm]').forEach(btn=>btn.addEventListener('click',()=>withBusy(btn,async()=>{const r=await api('confirmBooking',adminPassword,btn.dataset.confirm);alert(r.message||'ดำเนินการเรียบร้อย');await loadAdminDay();availabilityCache={};monthStatusCache={};await renderAdminCalendar();await renderPublicCalendar();})));
-    $('#adminBookings').querySelectorAll('[data-cancel]').forEach(btn=>btn.addEventListener('click',()=>withBusy(btn,async()=>{if(!confirm('ยืนยันยกเลิกคิวนี้หรือไม่? ระบบจะแจ้งผู้จองผ่าน LINE'))return;const r=await api('cancelBooking',adminPassword,btn.dataset.cancel);alert(r.message||'ดำเนินการเรียบร้อย');await loadAdminDay();availabilityCache={};monthStatusCache={};await renderAdminCalendar();await renderPublicCalendar();})));
+    $('#adminBookings').querySelectorAll('[data-confirm]').forEach(btn=>btn.addEventListener('click',()=>withBusy(btn,async()=>{const r=await adminApi('confirmBooking',btn.dataset.confirm);showAdminMsg(r.message||'ดำเนินการเรียบร้อย',!r.notificationSent);await refreshAfterChange();})));
+    $('#adminBookings').querySelectorAll('[data-cancel]').forEach(btn=>btn.addEventListener('click',()=>withBusy(btn,async()=>{if(!confirm('ยืนยันยกเลิกคิวนี้หรือไม่? ระบบจะแจ้งผู้จองผ่าน LINE'))return;const r=await adminApi('cancelBooking',btn.dataset.cancel);showAdminMsg(r.message||'ดำเนินการเรียบร้อย',!r.notificationSent);await refreshAfterChange();})));
   }catch(e){$('#adminBookings').innerHTML=`<div class="alert">${escapeHtml(e.message)}</div>`;}
 }
-$('#saveDayOff').addEventListener('click',async()=>withBusy($('#saveDayOff'),async()=>{clearError();if(!adminPassword)throw new Error('กรุณาเข้าสู่ระบบเจ้าหน้าที่');if(!adminDate)throw new Error('กรุณาเลือกวันที่');const reason=$('#dayOffReason').value.trim();if(!reason)throw new Error('กรุณาระบุเหตุผลวันหยุด');if(!confirm('กำหนด '+thaiDate(adminDate)+' เป็นวันหยุดใช่หรือไม่?'))return;const r=await api('addDayOff',adminPassword,adminDate,reason);alert(r.message||'บันทึกวันหยุดแล้ว');availabilityCache={};monthStatusCache={};await loadAdminDay();await renderAdminCalendar();await renderPublicCalendar();}));
-$('#removeDayOff').addEventListener('click',async()=>withBusy($('#removeDayOff'),async()=>{clearError();if(!adminPassword)throw new Error('กรุณาเข้าสู่ระบบเจ้าหน้าที่');if(!confirm('ยกเลิกวันหยุดของ '+thaiDate(adminDate)+' ใช่หรือไม่?'))return;const r=await api('deleteDayOff',adminPassword,adminDate);alert(r.message||'ลบวันหยุดแล้ว');availabilityCache={};monthStatusCache={};await loadAdminDay();await renderAdminCalendar();await renderPublicCalendar();}));
-$('#adminLogout').addEventListener('click',()=>{adminPassword='';$('#adminPassword').value='';$('#adminPanel').classList.add('hidden');$('#adminLoginCard').classList.remove('hidden');});
+$('#saveDayOff').addEventListener('click',async()=>withBusy($('#saveDayOff'),async()=>{clearError();if(!adminDate)throw new Error('กรุณาเลือกวันที่');const reason=$('#dayOffReason').value.trim();if(!reason)throw new Error('กรุณาระบุเหตุผลวันหยุด');if(!confirm('กำหนด '+thaiDate(adminDate)+' เป็นวันหยุดใช่หรือไม่?'))return;const r=await adminApi('addDayOff',adminDate,reason);showAdminMsg(r.message||'บันทึกวันหยุดแล้ว');await refreshAfterChange();}));
+$('#removeDayOff').addEventListener('click',async()=>withBusy($('#removeDayOff'),async()=>{clearError();if(!adminDate)throw new Error('กรุณาเลือกวันที่');if(!confirm('ยกเลิกวันหยุดของ '+thaiDate(adminDate)+' ใช่หรือไม่?'))return;const r=await adminApi('deleteDayOff',adminDate);showAdminMsg(r.message||'ลบวันหยุดแล้ว');await refreshAfterChange();}));
+$('#adminLogout').addEventListener('click',()=>{const t=adminToken;if(t)api('logoutAdmin',t).catch(()=>{});resetAdmin();});
 
 // Main tab navigation.
 document.querySelectorAll('[data-tab]').forEach(btn=>btn.addEventListener('click',async()=>{
   document.querySelectorAll('[data-tab]').forEach(el=>el.classList.toggle('active',el===btn));
   $('#bookingSection').classList.toggle('hidden',btn.dataset.tab!=='booking');$('#historySection').classList.toggle('hidden',btn.dataset.tab!=='history');$('#adminSection').classList.toggle('hidden',btn.dataset.tab!=='admin');clearError();
-  if(btn.dataset.tab==='history')await loadHistory();if(btn.dataset.tab==='admin'&&adminPassword)await loadAdminDay();
+  if(btn.dataset.tab==='history')await loadHistory();if(btn.dataset.tab==='admin'&&adminToken)await loadAdminDay();
 }));
 
+// แจ้งเตือนให้เพิ่ม LINE OA เป็นเพื่อน (ต้องผูก LINE OA กับ LIFF channel จึงจะตรวจสถานะได้)
+async function checkFriendship(){
+  try{
+    const f=await liff.getFriendship();
+    if(f&&f.friendFlag===false){
+      const link=OA_ADD_FRIEND_URL?` <a href="${escapeHtml(OA_ADD_FRIEND_URL)}" target="_blank" rel="noopener">เพิ่มเพื่อน</a>`:'';
+      const box=$('#friendNotice');
+      box.innerHTML='กรุณาเพิ่ม LINE OA ของ รพ.สต. เป็นเพื่อน เพื่อรับการแจ้งเตือนการยืนยัน/ยกเลิกคิว'+link;
+      box.classList.remove('hidden');
+    }
+  }catch(e){console.warn('getFriendship unavailable:',e);}
+}
 
 async function initLiff() {
   try {
     await liff.init({ liffId: LIFF_ID });
 
-    // หากยังไม่ได้เข้าสู่ระบบ ให้แสดงปุ่มเข้าสู่ระบบ
     if (!liff.isLoggedIn()) {
       $('#welcome').textContent = 'เข้าสู่ระบบ LINE เพื่อจองคิว';
-
-      $('#loginArea').innerHTML =
-        '<button type="button" class="linebtn" id="lineLogin">' +
-        'เข้าสู่ระบบด้วย LINE</button>';
-
-      $('#lineLogin').addEventListener('click', () => {
-        liff.login({ redirectUri: location.href });
-      });
-
+      $('#loginArea').innerHTML = '<button type="button" class="linebtn" id="lineLogin">เข้าสู่ระบบด้วย LINE</button>';
+      $('#lineLogin').addEventListener('click', () => { liff.login({ redirectUri: location.href }); });
       return;
     }
 
-    // รับ ID Token และข้อมูลโปรไฟล์จาก LINE
     idToken = liff.getIDToken() || '';
+    const decoded = liff.getDecodedIDToken ? liff.getDecodedIDToken() : null;
+    lineName = decoded && decoded.name ? String(decoded.name) : '';
 
-    const decoded = liff.getDecodedIDToken
-      ? liff.getDecodedIDToken()
-      : null;
-
-    lineName = decoded && decoded.name
-      ? String(decoded.name)
-      : '';
-
-    // ตรวจสอบว่ามี ID Token สำหรับส่งให้เซิร์ฟเวอร์หรือไม่
     if (!idToken) {
       $('#welcome').textContent = 'เข้าสู่ระบบแล้ว แต่ไม่พบ LINE ID Token';
-
-      $('#loginArea').innerHTML =
-        '<div class="note" style="color:#fff">' +
-        'โปรดตรวจสอบ LIFF Scopes ให้มี openid และ profile ' +
-        'แล้วเปิดระบบใหม่</div>';
-
+      $('#loginArea').innerHTML = '<div class="note" style="color:#fff">โปรดตรวจสอบ LIFF Scopes ให้มี openid และ profile แล้วเปิดระบบใหม่</div>';
       return;
     }
 
-    // แสดงข้อมูลผู้จอง
-    $('#welcome').textContent = lineName
-      ? 'ยินดีต้อนรับ ' + lineName
-      : 'เข้าสู่ระบบ LINE แล้ว';
-
+    $('#welcome').textContent = lineName ? 'ยินดีต้อนรับ ' + lineName : 'เข้าสู่ระบบ LINE แล้ว';
     $('#patientName').value = lineName;
-
-    $('#loginArea').innerHTML =
-      '<span style="font-size:12px;color:#e8e2d2">' +
-      'เชื่อมต่อ LINE สำเร็จ ✓</span>';
-
+    $('#loginArea').innerHTML = '<span style="font-size:12px;color:#e8e2d2">เชื่อมต่อ LINE สำเร็จ ✓</span>';
+    checkFriendship();
   } catch (e) {
     console.error('LIFF initialization error:', e);
-
     $('#welcome').textContent = 'เชื่อมต่อ LINE ไม่สำเร็จ';
-
-    $('#loginArea').innerHTML =
-      '<div class="note" style="color:#fff">' +
-      'กรุณาตรวจสอบ LIFF ID, Channel และการตั้งค่า LINE Login</div>';
+    $('#loginArea').innerHTML = '<div class="note" style="color:#fff">กรุณาตรวจสอบ LIFF ID, Channel และการตั้งค่า LINE Login</div>';
   }
 }
-
 
 (async function start(){
   drawServices();drawSummary();renderTimes(null);await initLiff();
