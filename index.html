@@ -232,23 +232,71 @@ document.querySelectorAll('[data-tab]').forEach(btn=>btn.addEventListener('click
   if(btn.dataset.tab==='history')await loadHistory();if(btn.dataset.tab==='admin'&&adminPassword)await loadAdminDay();
 }));
 
-async function initLiff(){
-  try{
-    await liff.init({liffId:LIFF_ID});
-    if(!liff.isLoggedIn()&&!liff.isInClient()){
-      $('#welcome').textContent='เข้าสู่ระบบ LINE เพื่อจองคิว';
-      $('#loginArea').innerHTML='<button type="button" class="linebtn" id="lineLogin">เข้าสู่ระบบด้วย LINE</button>';
-      $('#lineLogin').addEventListener('click',()=>liff.login({redirectUri:location.href}));
+
+async function initLiff() {
+  try {
+    await liff.init({ liffId: LIFF_ID });
+
+    // หากยังไม่ได้เข้าสู่ระบบ ให้แสดงปุ่มเข้าสู่ระบบ
+    if (!liff.isLoggedIn()) {
+      $('#welcome').textContent = 'เข้าสู่ระบบ LINE เพื่อจองคิว';
+
+      $('#loginArea').innerHTML =
+        '<button type="button" class="linebtn" id="lineLogin">' +
+        'เข้าสู่ระบบด้วย LINE</button>';
+
+      $('#lineLogin').addEventListener('click', () => {
+        liff.login({ redirectUri: location.href });
+      });
+
       return;
     }
-    idToken=liff.getIDToken()||'';const decoded=liff.getDecodedIDToken?liff.getDecodedIDToken():null;
-    lineName=decoded&&decoded.name?String(decoded.name):'';
-    $('#adminLineId').textContent=(decoded&&decoded.sub)?String(decoded.sub):'ไม่พบ LINE User ID';
-    if(!idToken){$('#welcome').textContent='ยังไม่ได้รับ LINE ID token';$('#loginArea').innerHTML='<div class="note">โปรดตั้งค่า LIFF Scopes ให้มี openid และ profile แล้วเปิดระบบใหม่</div>';return;}
-    $('#welcome').textContent=lineName?'ยินดีต้อนรับ '+lineName:'เข้าสู่ระบบ LINE แล้ว';$('#patientName').value=lineName;
-    $('#loginArea').innerHTML='<span style="font-size:12px;color:#e8e2d2">เชื่อมต่อ LINE สำเร็จ ✓</span>';
-  }catch(e){$('#welcome').textContent='เชื่อมต่อ LINE ไม่สำเร็จ';$('#loginArea').innerHTML='<div class="note" style="color:#fff">ตรวจสอบ LIFF ID และการตั้งค่า LIFF แล้วลองเปิดใหม่</div>';console.error(e);}
+
+    // รับ ID Token และข้อมูลโปรไฟล์จาก LINE
+    idToken = liff.getIDToken() || '';
+
+    const decoded = liff.getDecodedIDToken
+      ? liff.getDecodedIDToken()
+      : null;
+
+    lineName = decoded && decoded.name
+      ? String(decoded.name)
+      : '';
+
+    // ตรวจสอบว่ามี ID Token สำหรับส่งให้เซิร์ฟเวอร์หรือไม่
+    if (!idToken) {
+      $('#welcome').textContent = 'เข้าสู่ระบบแล้ว แต่ไม่พบ LINE ID Token';
+
+      $('#loginArea').innerHTML =
+        '<div class="note" style="color:#fff">' +
+        'โปรดตรวจสอบ LIFF Scopes ให้มี openid และ profile ' +
+        'แล้วเปิดระบบใหม่</div>';
+
+      return;
+    }
+
+    // แสดงข้อมูลผู้จอง
+    $('#welcome').textContent = lineName
+      ? 'ยินดีต้อนรับ ' + lineName
+      : 'เข้าสู่ระบบ LINE แล้ว';
+
+    $('#patientName').value = lineName;
+
+    $('#loginArea').innerHTML =
+      '<span style="font-size:12px;color:#e8e2d2">' +
+      'เชื่อมต่อ LINE สำเร็จ ✓</span>';
+
+  } catch (e) {
+    console.error('LIFF initialization error:', e);
+
+    $('#welcome').textContent = 'เชื่อมต่อ LINE ไม่สำเร็จ';
+
+    $('#loginArea').innerHTML =
+      '<div class="note" style="color:#fff">' +
+      'กรุณาตรวจสอบ LIFF ID, Channel และการตั้งค่า LINE Login</div>';
+  }
 }
+
 
 (async function start(){
   drawServices();drawSummary();renderTimes(null);await initLiff();
