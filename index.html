@@ -101,6 +101,19 @@ footer{text-align:center;color:var(--muted);font-size:12px;padding:10px 0 30px}
  <div id="ad" class="hide">
   <div class="card"><div class="st"><i>🗓️</i><div>ภาพรวมปฏิทินคิวรายเดือน<br><small style="font-weight:300;color:var(--muted)">คลิกเลือกวันที่ต้องการจัดการคิว</small></div></div>
    <div class="ch"><button id="acprev">‹</button><b id="amt"></b><button id="acnext">›</button></div><div class="cg" id="acg"></div></div>
+  
+  <!-- ส่วนจัดการวันหยุด / วันลา / วันติดธุระ -->
+  <div class="card">
+   <div class="st"><i>🏖️</i>จัดการวันลาหยุด / วันติดธุระ</div>
+   <div class="field"><label for="dayOffDate">วันที่ต้องการตั้งเป็นวันหยุด</label><input id="dayOffDate" type="date"></div>
+   <div class="field"><label for="dayOffReason">เหตุผล / ข้อความแจ้งผู้จอง</label><input id="dayOffReason" maxlength="120" value="แพทย์แผนไทยติดธุระ / ลาหยุด"></div>
+   <div class="right" style="margin-top:8px">
+    <button class="btn s" onclick="saveDayOff()">บันทึกวันหยุด/ลา</button>
+    <button class="btn s d" onclick="deleteDayOff()">ยกเลิกวันหยุด/ลา</button>
+   </div>
+   <div id="adminDayOffStatus" class="notice" style="margin-top:10px">สถานะวัน: ปกติ</div>
+  </div>
+
   <div class="card"><div class="st"><i>📋</i>รายการคิววันที่: <span id="ldt" style="font-size:14px;color:var(--primary)"></span></div><div id="bl"></div></div>
  </div>
 </section>
@@ -228,7 +241,13 @@ async function loadAdminCal(){
   h+=`<button class="cd${adminDate==k?' on':''}" data-v="${k}">${d}</button>`;
  }
  $('#acg').innerHTML=h;
- $('#acg').querySelectorAll('.cd').forEach(b=>b.onclick=()=>{adminDate=b.dataset.v;loadAdminCal();loadAdminDay()});
+ $('#acg').querySelectorAll('.cd').forEach(b=>b.onclick=()=>{
+  adminDate=b.dataset.v;
+  $('#dayOffDate').value=adminDate;
+  loadAdminCal();
+  loadAdminDay();
+ });
+ $('#dayOffDate').value=adminDate;
  loadAdminDay();
 }
 $('#acprev').onclick=()=>{if(--AV_M<0){AV_M=11;AV_Y--}loadAdminCal()};
@@ -236,8 +255,21 @@ $('#acnext').onclick=()=>{if(++AV_M>11){AV_M=0;AV_Y++}loadAdminCal()};
 
 async function loadAdminDay(){
  $('#ldt').textContent=th(adminDate);
+ $('#dayOffDate').value=adminDate;
  try{
   const r=await run('getAdminData',pin,adminDate);
+  
+  // จัดการสถานะวันหยุดในหน้า Admin
+  const statusEl = $('#adminDayOffStatus');
+  if(r.dayOff){
+   statusEl.textContent = 'สถานะวัน: หยุด (' + r.dayOff.reason + ')';
+   statusEl.className = 'notice warn';
+   $('#dayOffReason').value = r.dayOff.reason;
+  }else{
+   statusEl.textContent = 'สถานะวัน: เปิดทำการปกติ';
+   statusEl.className = 'notice';
+  }
+
   const bk=r.bookings||[];
   $('#bl').innerHTML=bk.length?bk.map(b=>`
    <div class="item">
@@ -263,6 +295,33 @@ async function loadAdminDay(){
    MS={};
   }));
  }catch(e){err(e)}
+}
+
+async function saveDayOff(){
+ const date = $('#dayOffDate').value;
+ const reason = $('#dayOffReason').value;
+ if(!date) return alert('กรุณาเลือกวันที่ต้องการกำหนดเป็นวันหยุด');
+ if(!confirm('ต้องการตั้งวันที่ ' + th(date) + ' เป็นวันหยุด/ลา ใช่หรือไม่?')) return;
+ try{
+  await run('addDayOff', pin, date, reason);
+  alert('บันทึกวันหยุด/ลาเรียบร้อยแล้ว');
+  MS={}; // เคลียร์แคชเดือนเพื่อให้ปฏิทินอัปเดต
+  loadAdminDay();
+  loadAdminCal();
+ }catch(e){alert(e.message || e);}
+}
+
+async function deleteDayOff(){
+ const date = $('#dayOffDate').value;
+ if(!date) return alert('กรุณาเลือกวันที่');
+ if(!confirm('ต้องการยกเลิกสถานะวันหยุดของวันที่ ' + th(date) + ' กลับเป็นวันเปิดทำการปกติ ใช่หรือไม่?')) return;
+ try{
+  await run('removeDayOff', pin, date);
+  alert('ยกเลิกวันหยุดเรียบร้อยแล้ว');
+  MS={};
+  loadAdminDay();
+  loadAdminCal();
+ }catch(e){alert(e.message || e);}
 }
 
 $('#li').onclick=()=>busy($('#li'),async()=>{
