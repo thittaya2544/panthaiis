@@ -254,11 +254,13 @@ async function loadAdminDay(){
   $('#bl').querySelectorAll('[data-conf]').forEach(btn=>btn.onclick=()=>busy(btn,async()=>{
    await run('confirmBooking',pin,btn.dataset.conf);
    loadAdminDay();
+   MS={};
   }));
   $('#bl').querySelectorAll('[data-canc]').forEach(btn=>btn.onclick=()=>busy(btn,async()=>{
    if(!confirm('ต้องการยกเลิกคิวนี้ใช่หรือไม่?'))return;
    await run('cancelBooking',pin,btn.dataset.canc);
    loadAdminDay();
+   MS={};
   }));
  }catch(e){err(e)}
 }
