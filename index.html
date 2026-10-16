@@ -1,118 +1,193 @@
 <!DOCTYPE html>
 <html lang="th"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>จองคิวแพทย์แผนไทย รพ.สต.</title>
+<title>จองคิวแพทย์แผนไทย รพ.สต.คลองจระเข้</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Thai:wght@600;700&family=Noto+Sans+Thai:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <script src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
 <style>
-:root{--g1:#34502a;--g2:#5f8a35;--g3:#eef2dc;--gold:#d4961c;--cream:#fbf6e8;--ink:#2b2a1c;--mut:#857f68;--line:#ece5cf;--r:18px}
+:root{
+ --primary:#244235;
+ --secondary:#436d59;
+ --accent:#c59b27;
+ --accent-light:#fdf8e2;
+ --bg:#fbf8f1;
+ --card-bg:#ffffff;
+ --text:#2c2c2c;
+ --muted:#787878;
+ --border:#e4dcce;
+ --radius:20px;
+}
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
-body{margin:0;font-family:'Noto Sans Thai',sans-serif;background:var(--cream);color:var(--ink)}
-.hero{position:relative;overflow:hidden;color:#fff;padding:34px 20px 70px;background:linear-gradient(145deg,var(--g1),var(--g2) 70%,#d4961c 135%)}
-.hero:before,.hero:after{content:"";position:absolute;border-radius:50%;background:#ffffff12}
-.hero:before{width:260px;height:260px;right:-70px;top:-90px}.hero:after{width:180px;height:180px;left:-60px;bottom:-90px}
+body{margin:0;font-family:'Prompt',sans-serif;background:var(--bg);color:var(--text);line-height:1.5}
+.hero{
+ position:relative;overflow:hidden;color:#fff;padding:40px 20px 75px;
+ background:linear-gradient(135deg, #1b3228 0%, #244235 50%, #355848 100%);
+ border-bottom:4px solid var(--accent);
+ text-align:center;
+}
+.hero::before{
+ content:"";position:absolute;top:-50px;right:-50px;width:200px;height:200px;
+ border:2px solid rgba(197,155,39,0.15);border-radius:50%;pointer-events:none;
+}
+.hero::after{
+ content:"";position:absolute;bottom:-60px;left:-40px;width:180px;height:180px;
+ border:2px solid rgba(197,155,39,0.1);border-radius:50%;pointer-events:none;
+}
 .hero .in{position:relative;max-width:560px;margin:auto}
-.badge{display:inline-block;font-size:12px;letter-spacing:.08em;background:#d4961c33;border:1px solid #f0c66a99;padding:4px 12px;border-radius:20px;margin-bottom:12px}
-.hero h1{font-family:'Noto Serif Thai',serif;font-size:27px;line-height:1.3;margin:0 0 6px}
-.hero p{margin:0;opacity:.88;font-size:14px;font-weight:300}
-.hero .leaf{position:absolute;right:18px;bottom:12px;font-size:64px;opacity:.9;transform:rotate(-12deg)}
-.lgn{margin-top:10px;padding:8px 16px;border:0;border-radius:20px;background:#fff;color:var(--g1);font:inherit;font-size:13px;font-weight:600;cursor:pointer}
-.wrap{max-width:560px;margin:-44px auto 40px;padding:0 14px;position:relative}
-.seg{display:flex;background:#fff;border-radius:40px;padding:5px;box-shadow:0 6px 22px #34502a22;margin-bottom:16px}
-.seg button{flex:1;border:0;background:none;padding:10px 4px;border-radius:30px;font:inherit;font-size:13px;color:var(--mut);transition:.2s}
-.seg button.on{background:linear-gradient(135deg,var(--g1),var(--g2));color:#fff;font-weight:500;box-shadow:0 4px 12px #5f8a3555}
-.card{background:#fff;border-radius:var(--r);padding:18px;margin-bottom:14px;box-shadow:0 2px 14px #34502a12;animation:up .4s both}
+.badge{
+ display:inline-block;font-size:12px;letter-spacing:.05em;background:rgba(197,155,39,0.2);
+ color:#f3dda4;border:1px solid rgba(197,155,39,0.4);padding:6px 16px;border-radius:30px;margin-bottom:14px;font-weight:500;
+}
+.hero h1{
+ font-family:'Prompt',sans-serif;font-size:24px;font-weight:700;line-height:1.4;margin:0 0 8px;letter-spacing:-0.5px;
+ text-shadow:0 2px 4px rgba(0,0,0,0.2);
+}
+.hero p{margin:0;opacity:.9;font-size:14px;font-weight:300;color:#e8e2d2}
+.lgn{
+ margin-top:12px;padding:9px 20px;border:0;border-radius:30px;background:var(--accent);color:#fff;
+ font:inherit;font-size:13px;font-weight:600;cursor:pointer;box-shadow:0 4px 12px rgba(197,155,39,0.3);transition:0.2s;
+}
+.lgn:active{transform:scale(0.96)}
+.wrap{max-width:560px;margin:-40px auto 40px;padding:0 16px;position:relative}
+.seg{
+ display:flex;background:var(--card-bg);border-radius:50px;padding:6px;
+ box-shadow:0 8px 24px rgba(36,66,53,0.08);margin-bottom:18px;border:1px solid var(--border);
+}
+.seg button{
+ flex:1;border:0;background:none;padding:12px 6px;border-radius:30px;font:inherit;
+ font-size:13.5px;color:var(--muted);transition:.2s;font-weight:500;
+}
+.seg button.on{
+ background:linear-gradient(135deg, var(--primary), var(--secondary));
+ color:#fff;font-weight:600;box-shadow:0 4px 15px rgba(36,66,53,0.25);
+}
+.card{
+ background:var(--card-bg);border-radius:var(--radius);padding:22px;margin-bottom:16px;
+ box-shadow:0 4px 20px rgba(36,66,53,0.06);border:1px solid var(--border);animation:up .4s both;
+}
 @keyframes up{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
-.st{display:flex;align-items:center;gap:10px;margin:0 0 14px;font-size:16px;font-weight:600}
-.st i{font-style:normal;width:26px;height:26px;border-radius:50%;background:#fbefd0;color:#8a5d0a;display:grid;place-items:center;font-size:13px}
-.svs{display:grid;gap:10px}
-.sv{display:flex;gap:14px;align-items:center;text-align:left;width:100%;padding:14px;border:1.5px solid var(--line);border-radius:14px;background:#fff;color:var(--ink);font:inherit;transition:.2s}
-.sv .ic{font-size:28px;width:52px;height:52px;border-radius:14px;background:var(--g3);display:grid;place-items:center;flex:none}
-.sv b{display:block;font-size:15px}.sv span{font-size:12.5px;color:var(--mut)}
-.sv.on{border-color:var(--g2);background:#f8f7e8;box-shadow:0 4px 14px #5f8a3525}
-.sv.on .ic{background:var(--g2)}
+.st{display:flex;align-items:center;gap:12px;margin:0 0 16px;font-size:16px;font-weight:600;color:var(--primary)}
+.st i{
+ font-style:normal;width:30px;height:30px;border-radius:50%;background:var(--accent-light);
+ color:var(--accent);display:grid;place-items:center;font-size:14px;font-weight:700;border:1px solid rgba(197,155,39,0.3);
+}
+.svs{display:grid;gap:12px}
+.sv{
+ display:flex;gap:16px;align-items:center;text-align:left;width:100%;padding:16px;
+ border:1.5px solid var(--border);border-radius:16px;background:#fff;color:var(--text);font:inherit;transition:.2s;cursor:pointer;
+}
+.sv .ic{font-size:28px;width:56px;height:56px;border-radius:14px;background:var(--accent-light);display:grid;place-items:center;flex:none}
+.sv b{display:block;font-size:15px;color:var(--primary);margin-bottom:2px}
+.sv span{font-size:12.5px;color:var(--muted)}
+.sv.on{border-color:var(--accent);background:#fffcf5;box-shadow:0 4px 16px rgba(197,155,39,0.15)}
+.sv.on .ic{background:var(--accent);color:#fff}
 .slots{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
-.sl{padding:12px 0;border:1.5px solid var(--line);border-radius:12px;background:#fff;color:var(--ink);font:inherit;font-size:15px;font-weight:500;transition:.2s}
-.sl.on{background:var(--g2);border-color:var(--g2);color:#fff;box-shadow:0 4px 12px #5f8a3544}
-.sl:disabled{background:#f1eee2;color:#b9b49e;text-decoration:line-through;font-weight:400}
-.hint{color:var(--mut);font-size:13px;text-align:center;padding:10px 0}
-label{display:block;font-size:13px;color:var(--mut);margin:0 0 6px 2px}
-input{width:100%;padding:13px 14px;border:1.5px solid var(--line);border-radius:12px;font:inherit;margin-bottom:12px;background:#fffdf6;transition:.2s}
-input:focus{outline:0;border-color:var(--g2);box-shadow:0 0 0 4px #5f8a351f}
-.sum{background:var(--g3);border-radius:12px;padding:12px 14px;font-size:13.5px;margin-bottom:12px;color:var(--g1);line-height:1.6}
-.btn{width:100%;padding:15px;border:0;border-radius:14px;background:linear-gradient(135deg,var(--g1),var(--g2));color:#fff;font:inherit;font-size:16px;font-weight:600;box-shadow:0 8px 20px #5f8a3544;transition:.2s}
-.btn:active{transform:scale(.98)}.btn:disabled{opacity:.6}
-.btn.s{width:auto;padding:6px 12px;font-size:12px;background:#fff;color:var(--g2);border:1.5px solid var(--g2);box-shadow:none;font-weight:500;margin-left:4px}
-.btn.d{color:#c0392b;border-color:#f0c9c4}
-.ok{text-align:center;background:linear-gradient(160deg,#f8f7e8,#fff);border:1.5px solid #dcd29a;padding:26px 18px}
-.ok .big{font-size:46px}.ok h2{font-family:'Noto Serif Thai',serif;color:var(--g1);margin:6px 0}
-.err{background:#fdecea;color:#b3261e;padding:12px 14px;border-radius:12px;margin-bottom:14px;font-size:14px}
-.item{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:12px 0;border-bottom:1px dashed var(--line)}
-.item:last-child{border:0}.item .t{font-weight:500;font-size:14.5px}.item .m{color:var(--mut);font-size:12.5px}
-.badge-status{padding:2px 8px;border-radius:10px;font-size:11px;font-weight:500}
-.badge-pending{background:#fbefd0;color:#8a5d0a}
-.badge-confirmed{background:#eef2dc;color:var(--g1)}
-.badge-cancelled{background:#fbe3dc;color:#b04a2f}
+.sl{
+ padding:12px 0;border:1.5px solid var(--border);border-radius:12px;background:#fff;color:var(--text);
+ font:inherit;font-size:14.5px;font-weight:500;transition:.2s;cursor:pointer;
+}
+.sl.on{background:var(--primary);border-color:var(--primary);color:#fff;box-shadow:0 4px 12px rgba(36,66,53,0.3)}
+.sl:disabled{background:#f4f1ea;color:#b5b0a1;text-decoration:line-through;border-color:transparent;cursor:not-allowed}
+.hint{color:var(--muted);font-size:13px;text-align:center;padding:12px 0}
+label{display:block;font-size:13px;color:var(--muted);margin:0 0 6px 2px;font-weight:500}
+input{
+ width:100%;padding:13px 16px;border:1.5px solid var(--border);border-radius:12px;font:inherit;
+ margin-bottom:14px;background:#fff;transition:.2s;color:var(--text);
+}
+input:focus{outline:0;border-color:var(--primary);box-shadow:0 0 0 4px rgba(36,66,53,0.1)}
+.sum{background:var(--accent-light);border-radius:12px;padding:14px;font-size:13.5px;margin-bottom:14px;color:#5a4710;line-height:1.6;border:1px dashed rgba(197,155,39,0.4)}
+.btn{
+ width:100%;padding:15px;border:0;border-radius:14px;background:linear-gradient(135deg,var(--primary),var(--secondary));
+ color:#fff;font:inherit;font-size:16px;font-weight:600;box-shadow:0 6px 20px rgba(36,66,53,0.25);cursor:pointer;transition:.2s;
+}
+.btn:active{transform:scale(.98)}.btn:disabled{opacity:.6;cursor:not-allowed}
+.btn.s{width:auto;padding:6px 14px;font-size:12px;background:#fff;color:var(--primary);border:1.5px solid var(--primary);box-shadow:none;font-weight:600;margin-left:4px;border-radius:8px}
+.btn.d{color:#a93226;border-color:#f5b7b1}
+.ok{text-align:center;background:linear-gradient(160deg,#fffcf5,#fff);border:1.5px solid #e6d5a7;padding:30px 20px}
+.ok .big{font-size:50px;margin-bottom:5px}.ok h2{font-family:'Prompt',sans-serif;color:var(--primary);margin:6px 0;font-size:22px}
+.err{background:#fdecea;color:#b3261e;padding:14px;border-radius:12px;margin-bottom:16px;font-size:14px;border:1px solid #f5c6cb}
+.item{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:14px 0;border-bottom:1px dashed var(--border)}
+.item:last-child{border:0}.item .t{font-weight:600;font-size:14.5px;color:var(--primary)}
+.item .m{color:var(--muted);font-size:12.5px;margin-top:2px}
+.badge-status{padding:3px 10px;border-radius:20px;font-size:11px;font-weight:600;display:inline-block}
+.badge-pending{background:#fcf3cf;color:#7d6608}
+.badge-confirmed{background:#e8f8f5;color:#117a65}
+.badge-cancelled{background:#f5b7b1;color:#78281f}
 .hide{display:none!important}
-footer{text-align:center;color:var(--mut);font-size:12px;padding:0 0 30px}
-.ch{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}.ch b{font-family:'Noto Serif Thai',serif;color:var(--g1);font-size:16px}
-.ch button{width:38px;height:38px;border-radius:50%;border:1.5px solid var(--line);background:#fff;font-size:20px;color:var(--g1);cursor:pointer}.ch button:disabled{opacity:.3}
-.cg{display:grid;grid-template-columns:repeat(7,1fr);gap:6px}.cw{text-align:center;font-size:12px;color:var(--mut);padding:4px 0}
-.cd{aspect-ratio:1;border:1.5px solid var(--line);border-radius:12px;background:#fff;font:inherit;font-size:15px;line-height:1.1;padding:0;display:flex;flex-direction:column;align-items:center;justify-content:center;cursor:pointer;color:var(--ink)}
-.cd small{font-size:9px;color:#c0563b;margin-top:2px}.cd.td{border-color:var(--gold)}
-.cd.on{background:linear-gradient(160deg,var(--g1),var(--g2));color:#fff;border-color:transparent}
-.cd:disabled{background:#f1eee2;color:#b9b49e;border-color:transparent;cursor:default}
+footer{text-align:center;color:var(--muted);font-size:12px;padding:10px 0 30px;letter-spacing:0.05em}
+.ch{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px}
+.ch b{color:var(--primary);font-size:16px;font-weight:600}
+.ch button{
+ width:36px;height:36px;border-radius:50%;border:1.5px solid var(--border);
+ background:#fff;font-size:18px;color:var(--primary);cursor:pointer;display:grid;place-items:center;transition:0.2s;
+}
+.ch button:hover{background:var(--accent-light);border-color:var(--accent)}
+.ch button:disabled{opacity:.3;cursor:default}
+.cg{display:grid;grid-template-columns:repeat(7,1fr);gap:6px}
+.cw{text-align:center;font-size:12px;color:var(--muted);padding:4px 0;font-weight:500}
+.cd{
+ aspect-ratio:1;border:1.5px solid var(--border);border-radius:12px;background:#fff;
+ font:inherit;font-size:14px;padding:0;display:flex;flex-direction:column;align-items:center;justify-content:center;
+ cursor:pointer;color:var(--text);font-weight:500;transition:0.2s;
+}
+.cd small{font-size:8.5px;color:#c0392b;margin-top:1px;font-weight:600}
+.cd.td{border-color:var(--accent);background:#fffcf5}
+.cd.on{background:linear-gradient(135deg,var(--primary),var(--secondary));color:#fff;border-color:transparent}
+.cd:disabled{background:#f4f1ea;color:#b8b2a3;border-color:transparent;cursor:default}
 </style></head><body>
 <div class="hero"><div class="in">
- <span class="badge">🌿 คลินิกแพทย์แผนไทย รพ.สต.</span>
- <h1>จองคิวนวด อบ ประคบ<br>ง่ายๆ ในไม่กี่ขั้นตอน</h1>
- <p id="hi">กำลังเชื่อมต่อ LINE...</p>
- <div class="leaf">🍃</div>
+ <span class="badge">🌿 รพ.สต.คลองจระเข้</span>
+ <h1>คลินิกการแพทย์แผนไทย</h1>
+ <p id="hi">สืบสานภูมิปัญญาไทย ใส่ใจสุขภาพคุณ</p>
+ <div id="lgn-box"></div>
 </div></div>
 
 <div class="wrap">
-<div class="seg"><button class="on" data-t="b">จองคิว</button><button data-t="q">ประวัติของฉัน</button><button data-t="a">เจ้าหน้าที่</button></div>
+<div class="seg"><button class="on" data-t="b">จองคิวบริการ</button><button data-t="q">ประวัติของฉัน</button><button data-t="a">เจ้าหน้าที่</button></div>
 <div id="err" class="err hide"></div>
 
 <section id="b">
- <div class="card"><div class="st"><i>1</i>เลือกบริการ</div><div class="svs" id="sv"></div></div>
- <div class="card"><div class="st"><i>2</i><div>เลือกวัน<br><small>เปิดจอง จันทร์–ศุกร์</small></div></div>
+ <div class="card"><div class="st"><i>1</i>เลือกรายการบริการ</div><div class="svs" id="sv"></div></div>
+ <div class="card"><div class="st"><i>2</i><div>เลือกวันที่ต้องการมารับบริการ<br><small style="font-weight:300;color:var(--muted)">เปิดให้บริการ จันทร์ – ศุกร์</small></div></div>
   <div class="ch"><button id="cprev">‹</button><b id="mt"></b><button id="cnext">›</button></div><div class="cg" id="cg"></div></div>
- <div class="card"><div class="st"><i>3</i>เลือกเวลา</div><div class="slots" id="sl"></div><div class="hint" id="slh">กรุณาเลือกวันก่อน</div></div>
- <div class="card"><div class="st"><i>4</i>ข้อมูลผู้จอง</div>
-  <label for="nm">ชื่อ-นามสกุล</label><input id="nm" placeholder="เช่น สมชาย ใจดี">
-  <label for="ph">เบอร์โทรศัพท์</label><input id="ph" type="tel" inputmode="numeric" maxlength="10" placeholder="เช่น 08xxxxxxxx">
-  <div class="sum" id="sum">ยังไม่ได้เลือกรายการ</div>
-  <button class="btn" id="go">ส่งคำขอจองคิว</button></div>
+ <div class="card"><div class="st"><i>3</i>เลือกช่วงเวลา</div><div class="slots" id="sl"></div><div class="hint" id="slh">กรุณาเลือกวันในปฏิทินก่อนครับ</div></div>
+ <div class="card"><div class="st"><i>4</i>ข้อมูลผู้มารับบริการ</div>
+  <label for="nm">ชื่อ - นามสกุล</label><input id="nm" placeholder="เช่น สมชาย ใจดี">
+  <label for="ph">เบอร์โทรศัพท์มือถือ</label><input id="ph" type="tel" inputmode="numeric" maxlength="10" placeholder="เช่น 0812345678">
+  <div class="sum" id="sum">ยังไม่ได้เลือกรายการบริการ</div>
+  <button class="btn" id="go">ยืนยันส่งคำขอจองคิว</button></div>
  <div id="done" class="card ok hide"></div>
 </section>
 
 <section id="q" class="hide">
  <div class="card">
-  <div class="st"><i>📋</i>ประวัติการจองคิวของฉัน</div>
-  <div id="my-history"><div class="hint">กำลังโหลดประวัติ...</div></div>
+  <div class="st"><i>📋</i>ประวัติการจองคิวของคุณ</div>
+  <div id="my-history"><div class="hint">กำลังโหลดข้อมูลประวัติ...</div></div>
  </div>
 </section>
 
 <section id="a" class="hide">
- <div class="card" id="lg"><div class="st"><i>🔒</i>เข้าสู่ระบบเจ้าหน้าที่</div><input id="pin" type="password" placeholder="รหัสเจ้าหน้าที่"><button class="btn" id="li">เข้าสู่ระบบ</button></div>
+ <div class="card" id="lg"><div class="st"><i>🔒</i>เข้าสู่ระบบเจ้าหน้าที่ รพ.สต.คลองจระเข้</div><input id="pin" type="password" placeholder="กรอกรหัสผ่านเจ้าหน้าที่"><button class="btn" id="li">เข้าสู่ระบบ</button></div>
  <div id="ad" class="hide">
-  <div class="card"><div class="st"><i>🗓️</i><div>ภาพรวมคิวรายเดือน<br><small>คลิกวันที่เพื่อดูและยืนยันคิว</small></div></div>
+  <div class="card"><div class="st"><i>🗓️</i><div>ภาพรวมปฏิทินคิวรายเดือน<br><small style="font-weight:300;color:var(--muted)">คลิกเลือกวันที่ต้องการจัดการคิว</small></div></div>
    <div class="ch"><button id="acprev">‹</button><b id="amt"></b><button id="acnext">›</button></div><div class="cg" id="acg"></div></div>
-  <div class="card"><div class="st"><i>📋</i>คิววันที่: <span id="ldt" style="font-size:14px;color:var(--g2)"></span></div><div id="bl"></div></div>
+  <div class="card"><div class="st"><i>📋</i>รายการคิววันที่: <span id="ldt" style="font-size:14px;color:var(--primary)"></span></div><div id="bl"></div></div>
  </div>
 </section>
-<footer>🌿 ขอบคุณที่ใช้บริการ</footer>
+<footer>🌿 โรงพยาบาลส่งเสริมสุขภาพตำบลคลองจระเข้</footer>
 </div>
 
 <script>
-// ===== ใส่ค่าของคุณที่นี่ =====
 const API_URL = 'https://script.google.com/macros/s/AKfycbzHGgprcXluUvgBhbZGGynXrvrj3xmu2TUBTR-uIlJLY9zQB3_Z_QOLnT-QC1pF2t__/exec';
 const LIFF_ID = '2012052461-iCqWd1tf';
 const AHEAD_MONTHS = 3;
 
-const SV=[{n:'นวดแผนไทย',i:'💆',d:'คลายกล้ามเนื้อ ปรับสมดุลร่างกาย'},{n:'อบสมุนไพร',i:'♨️',d:'ไอน้ำสมุนไพร ผ่อนคลาย ขับเหงื่อ'},{n:'ประคบสมุนไพร',i:'🌿',d:'ลูกประคบร้อน บรรเทาปวดเมื่อย'}];
+const SV=[
+ {n:'นวดแผนไทย',i:'💆',d:'นวดผ่อนคลายกล้ามเนื้อ บรรเทาอาการปวดตึง'},
+ {n:'อบสมุนไพร',i:'♨️',d:'อบไอน้ำสมุนไพรไทย ช่วยขับเหงื่อ ผ่อนคลาย'}
+];
+
 const $=s=>document.querySelector(s);
 const dt=k=>new Date(k+'T00:00:00');
 const th=k=>dt(k).toLocaleDateString('th-TH',{weekday:'short',day:'numeric',month:'short',year:'2-digit'});
@@ -176,46 +251,44 @@ function draw(){
  renderCal();
  const a=S.date&&AV[S.date],sl=(a&&a.slots)||[];
  $('#slh').classList.toggle('hide',sl.length>0);
- $('#slh').textContent=!S.date?'กรุณาเลือกวันก่อน':!a?'กำลังโหลด...':'';
+ $('#slh').textContent=!S.date?'กรุณาเลือกวันในปฏิทินก่อนครับ':!a?'กำลังโหลดช่วงเวลา...':'';
  $('#sl').innerHTML=sl.map(s=>`<button class="sl${S.time==s.time?' on':''}" data-v="${esc(s.time)}" ${s.available?'':'disabled'}>${esc(s.time)}</button>`).join('');
  $('#sl').querySelectorAll('button').forEach(b=>b.onclick=()=>{S.time=b.dataset.v;draw()});
- $('#sum').innerHTML=(S.service||S.date||S.time)?`<b>${S.service||'—'}</b><br>📅 ${S.date?th(S.date):'—'} &nbsp; ⏰ ${S.time?esc(S.time)+' น.':'—'}`:'ยังไม่ได้เลือกรายการ';
+ $('#sum').innerHTML=(S.service||S.date||S.time)?`<b>บริการ: ${S.service||'—'}</b><br>📅 วันที่: ${S.date?th(S.date):'—'} &nbsp; ⏰ เวลา: ${S.time?esc(S.time)+' น.':'—'}`:'ยังไม่ได้เลือกรายการบริการ';
 }
 
 $('#go').onclick=async()=>{
  err();$('#done').classList.add('hide');
  const nm=$('#nm').value.trim(),ph=$('#ph').value.replace(/\D/g,'');
- if(!S.service||!S.date||!S.time)return err('กรุณาเลือกบริการ วัน และเวลา');
- if(!nm)return err('กรุณากรอกชื่อ-นามสกุล');
- if(!/^0\d{8,9}$/.test(ph))return err('กรุณากรอกเบอร์โทรศัพท์ให้ถูกต้อง');
+ if(!S.service||!S.date||!S.time)return err('กรุณาเลือกบริการ วัน และช่วงเวลาให้ครบถ้วน');
+ if(!nm)return err('กรุณากรอกชื่อ - นามสกุลผู้รับบริการ');
+ if(!/^0\d{8,9}$/.test(ph))return err('กรุณากรอกเบอร์โทรศัพท์มือถือให้ถูกต้อง (10 หลัก)');
  const b=$('#go');b.disabled=true;b.textContent='กำลังส่งคำขอ...';
  try{
   const r=await run('createBooking',{service:S.service,date:S.date,time:S.time,name:nm,phone:ph,lineUserId});
   const x=$('#done');x.classList.remove('hide');
-  x.innerHTML=`<div class="big">📨</div><h2>ส่งคำขอจองคิวแล้ว</h2><div class="hint">${esc(r.notificationMessage)}</div>`;
+  x.innerHTML=`<div class="big">🌿</div><h2>ส่งคำขอจองคิวสำเร็จ</h2><div class="hint">${esc(r.notificationMessage)}</div>`;
   x.scrollIntoView({behavior:'smooth'});S={};
  }catch(e){err(e)}
- draw();b.disabled=false;b.textContent='ส่งคำขอจองคิว';
+ draw();b.disabled=false;b.textContent='ยืนยันส่งคำขอจองคิว';
 };
 
-// ---- ประวัติของฉัน ----
 async function loadMyHistory(){
  const box=$('#my-history');
- if(!lineUserId){box.innerHTML='<div class="hint">กรุณาเปิดผ่านแอป LINE เพื่อดูประวัติ</div>';return;}
- box.innerHTML='<div class="hint">กำลังโหลดประวัติ...</div>';
+ if(!lineUserId){box.innerHTML='<div class="hint">กรุณาเปิดใช้งานผ่านแอปพลิเคชัน LINE เพื่อดูประวัติส่วนตัว</div>';return;}
+ box.innerHTML='<div class="hint">กำลังโหลดข้อมูลประวัติ...</div>';
  try{
   const list=await run('getUserHistory',lineUserId);
   box.innerHTML=list.length?list.map(b=>`
    <div class="item">
     <div>
-     <div class="t">${esc(b.service)} <span class="badge-status badge-${b.status.toLowerCase()}">${b.status=='PENDING'?'รออนุมัติ':b.status=='CONFIRMED'?'ยืนยันแล้ว':'ยกเลิก'}</span></div>
+     <div class="t">${esc(b.service)} <span class="badge-status badge-${b.status.toLowerCase()}">${b.status=='PENDING'?'รออนุมัติ':b.status=='CONFIRMED'?'ยืนยันแล้ว':'ยกเลิกแล้ว'}</span></div>
      <div class="m">📅 ${th(b.date)} · ${esc(b.time)} น.</div>
     </div>
-   </div>`).join(''):'<div class="hint">ยังไม่มีประวัติการจอง</div>';
- }catch(e){box.innerHTML='<div class="hint">โหลดประวัติไม่สำเร็จ</div>'}
+   </div>`).join(''):'<div class="hint">ยังไม่มีประวัติการจองคิวในระบบ</div>';
+ }catch(e){box.innerHTML='<div class="hint">ไม่สามารถโหลดข้อมูลประวัติได้ในขณะนี้</div>'}
 }
 
-// ---- เจ้าหน้าที่ ----
 let AV_Y=new Date().getFullYear(),AV_M=new Date().getMonth(),adminDate=TODAY,pin='';
 async function loadAdminCal(){
  $('#amt').textContent=MN[AV_M]+' '+(AV_Y+543);
@@ -241,20 +314,20 @@ async function loadAdminDay(){
    <div class="item">
     <div>
      <div class="t">${esc(b.time)} น. · ${esc(b.service)} <span class="badge-status badge-${b.status.toLowerCase()}">${b.status=='PENDING'?'รออนุมัติ':b.status=='CONFIRMED'?'ยืนยันแล้ว':'ยกเลิก'}</span></div>
-     <div class="m">${esc(b.name)} (${esc(b.phone)})</div>
+     <div class="m">👤 ${esc(b.name)} (📞 ${esc(b.phone)})</div>
     </div>
     <div>
      ${b.status=='PENDING'?`<button class="btn s" data-conf="${b.id}">ยืนยัน</button>`:''}
      ${b.status!='CANCELLED'?`<button class="btn s d" data-canc="${b.id}">ยกเลิก</button>`:''}
     </div>
-   </div>`).join(''):'<div class="hint">ไม่มีคิวในวันนี้</div>';
+   </div>`).join(''):'<div class="hint">ไม่มีรายการจองในวันนี้</div>';
 
   $('#bl').querySelectorAll('[data-conf]').forEach(btn=>btn.onclick=()=>busy(btn,async()=>{
    await run('confirmBooking',pin,btn.dataset.conf);
    loadAdminDay();
   }));
   $('#bl').querySelectorAll('[data-canc]').forEach(btn=>btn.onclick=()=>busy(btn,async()=>{
-   if(!confirm('ต้องการยกเลิกคิวนี้?'))return;
+   if(!confirm('ต้องการยกเลิกคิวนี้ใช่หรือไม่?'))return;
    await run('cancelBooking',pin,btn.dataset.canc);
    loadAdminDay();
   }));
@@ -267,22 +340,21 @@ $('#li').onclick=()=>busy($('#li'),async()=>{
 });
 $('#pin').onkeydown=e=>{if(e.key=='Enter')$('#li').click()};
 
-// เริ่มต้นระบบ LINE Login
 async function init(){
  draw();
  try{
-  if(LIFF_ID && LIFF_ID!='ใส่_LIFF_ID_ของคุณ'){
+  if(LIFF_ID && LIFF_ID!='2012052461-iCqWd1tf'){
    await liff.init({liffId:LIFF_ID});
    if(liff.isLoggedIn()){
     const p=await liff.getProfile();
     lineUserId=p.userId;
-    $('#hi').textContent='สวัสดีคุณ '+p.displayName+' 👋';
+    $('#hi').textContent='ยินดีต้อนรับ คุณ'+p.displayName+' 👋';
     if(!$('#nm').value)$('#nm').value=p.displayName;
    }else{
-    $('#hi').innerHTML='<button class="lgn" onclick="liff.login()">เข้าสู่ระบบด้วย LINE</button>';
+    $('#lgn-box').innerHTML='<button class="lgn" onclick="liff.login()">เข้าสู่ระบบด้วย LINE</button>';
    }
-  }else{$('#hi').textContent='เปิดจองคิว รพ.สต.';}
- }catch(_){$('#hi').textContent='เปิดจองคิว รพ.สต.';}
+  }else{$('#hi').textContent='ระบบจองคิวคลินิกแพทย์แผนไทย';}
+ }catch(_){$('#hi').textContent='ระบบจองคิวคลินิกแพทย์แผนไทย';}
 }
 init();
 </script></body></html>
