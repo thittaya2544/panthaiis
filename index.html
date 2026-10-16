@@ -119,13 +119,66 @@ let adminPassword = '';
 
 function showError(message){const box=$('#globalError');box.textContent=message||'';box.classList.toggle('hidden',!message);if(message)window.scrollTo({top:0,behavior:'smooth'});}
 function clearError(){showError('');}
-async function api(functionName,...args){
-  const response = await fetch(API_URL,{method:'POST',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify({f:functionName,a:args})});
+
+async function api(functionName, ...args) {
+  let response;
+
+  try {
+    response = await fetch(API_URL, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'text/plain;charset=utf-8'
+      },
+      body: JSON.stringify({
+        f: functionName,
+        a: args
+      })
+    });
+  } catch (error) {
+    console.error('API network error:', error);
+    throw new Error(
+      'เชื่อมต่อ Google Apps Script ไม่สำเร็จ กรุณาตรวจสอบ URL และการเผยแพร่เว็บแอป'
+    );
+  }
+
+  let raw;
+
+  try {
+    raw = await response.text();
+  } catch (error) {
+    console.error('API response read error:', error);
+    throw new Error('ไม่สามารถอ่านข้อมูลจากเซิร์ฟเวอร์ได้');
+  }
+
   let data;
-  try{data=await response.json();}catch(e){throw new Error('เซิร์ฟเวอร์ตอบกลับไม่ถูกต้อง กรุณาตรวจ URL ของ Apps Script และ Deploy ใหม่');}
-  if(!data.ok)throw new Error(data.error||'เกิดข้อผิดพลาด');
+
+  try {
+    data = JSON.parse(raw);
+  } catch (error) {
+    console.error(
+      'Invalid API JSON:',
+      response.status,
+      raw.slice(0, 500)
+    );
+
+    throw new Error(
+      'เซิร์ฟเวอร์ตอบกลับไม่ใช่ JSON (HTTP ' +
+      response.status +
+      ') กรุณาตรวจสอบ URL และ Deployment'
+    );
+  }
+
+  if (!response.ok) {
+    throw new Error('เซิร์ฟเวอร์ตอบกลับ HTTP ' + response.status);
+  }
+
+  if (data.ok !== true) {
+    throw new Error(data.error || 'ระบบไม่สามารถดำเนินการได้');
+  }
+
   return data.data;
 }
+
 async function withBusy(button, callback){if(button.disabled)return;const original=button.textContent;button.disabled=true;button.textContent='กำลังดำเนินการ...';try{await callback();}catch(e){showError(e.message||String(e));}finally{button.disabled=false;button.textContent=original;}}
 function tokenNow(){if(!window.liff||!liff.isLoggedIn()&&!liff.isInClient())return '';return liff.getIDToken()||'';}
 
