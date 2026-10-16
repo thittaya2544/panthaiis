@@ -1,311 +1,259 @@
 <!DOCTYPE html>
-<html lang="th"><head><meta charset="utf-8">
+<html lang="th">
+<head>
+<meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>จองคิวแพทย์แผนไทย รพ.สต.คลองจระเข้</title>
-<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<title>จองคิวคลินิกการแพทย์แผนไทย | รพ.สต.คลองจระเข้</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <script src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
 <style>
-:root{--primary:#244235;--secondary:#436d59;--accent:#c59b27;--accent-light:#fdf8e2;--bg:#fbf8f1;--card-bg:#ffffff;--text:#2c2c2c;--muted:#787878;--border:#e4dcce;--radius:20px}
-*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
-body{margin:0;font-family:'Prompt',sans-serif;background:var(--bg);color:var(--text);line-height:1.5}
-.hero{position:relative;overflow:hidden;color:#fff;padding:40px 20px 75px;background:linear-gradient(135deg, #1b3228 0%, #244235 50%, #355848 100%);border-bottom:4px solid var(--accent);text-align:center}
-.hero .in{position:relative;max-width:560px;margin:auto}
-.badge{display:inline-block;font-size:12px;letter-spacing:.05em;background:rgba(197,155,39,0.2);color:#f3dda4;border:1px solid rgba(197,155,39,0.4);padding:6px 16px;border-radius:30px;margin-bottom:14px;font-weight:500}
-.hero h1{font-family:'Prompt',sans-serif;font-size:24px;font-weight:700;line-height:1.4;margin:0 0 8px}
-.hero p{margin:0;opacity:.9;font-size:14px;font-weight:300;color:#e8e2d2}
-.lgn{margin-top:12px;padding:9px 20px;border:0;border-radius:30px;background:var(--accent);color:#fff;font:inherit;font-size:13px;font-weight:600;cursor:pointer}
-.wrap{max-width:560px;margin:-40px auto 40px;padding:0 16px;position:relative}
-.seg{display:flex;background:var(--card-bg);border-radius:50px;padding:6px;box-shadow:0 8px 24px rgba(36,66,53,0.08);margin-bottom:18px;border:1px solid var(--border)}
-.seg button{flex:1;border:0;background:none;padding:12px 6px;border-radius:30px;font:inherit;font-size:13.5px;color:var(--muted);transition:.2s;font-weight:500}
-.seg button.on{background:linear-gradient(135deg, var(--primary), var(--secondary));color:#fff;font-weight:600}
-.card{background:var(--card-bg);border-radius:var(--radius);padding:22px;margin-bottom:16px;box-shadow:0 4px 20px rgba(36,66,53,0.06);border:1px solid var(--border)}
-.st{display:flex;align-items:center;gap:12px;margin:0 0 16px;font-size:16px;font-weight:600;color:var(--primary)}
-.st i{font-style:normal;width:30px;height:30px;border-radius:50%;background:var(--accent-light);color:var(--accent);display:grid;place-items:center;font-size:14px;font-weight:700;border:1px solid rgba(197,155,39,0.3)}
-.svs{display:grid;gap:12px}
-.sv{display:flex;gap:16px;align-items:center;text-align:left;width:100%;padding:16px;border:1.5px solid var(--border);border-radius:16px;background:#fff;color:var(--text);font:inherit;cursor:pointer}
-.sv .ic{font-size:28px;width:56px;height:56px;border-radius:14px;background:var(--accent-light);display:grid;place-items:center;flex:none}
-.sv b{display:block;font-size:15px;color:var(--primary);margin-bottom:2px}
-.sv span{font-size:12.5px;color:var(--muted)}
-.sv.on{border-color:var(--accent);background:#fffcf5}
-.sv.on .ic{background:var(--accent);color:#fff}
-.slots{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
-.sl{padding:12px 0;border:1.5px solid var(--border);border-radius:12px;background:#fff;color:var(--text);font:inherit;font-size:14.5px;font-weight:500;cursor:pointer}
-.sl.on{background:var(--primary);border-color:var(--primary);color:#fff}
-.sl:disabled{background:#f4f1ea;color:#b5b0a1;text-decoration:line-through;border-color:transparent;cursor:not-allowed}
-.hint{color:var(--muted);font-size:13px;text-align:center;padding:12px 0}
-label{display:block;font-size:13px;color:var(--muted);margin:0 0 6px 2px;font-weight:500}
-input{width:100%;padding:13px 16px;border:1.5px solid var(--border);border-radius:12px;font:inherit;margin-bottom:14px;background:#fff;color:var(--text)}
-input:focus{outline:0;border-color:var(--primary)}
-.sum{background:var(--accent-light);border-radius:12px;padding:14px;font-size:13.5px;margin-bottom:14px;color:#5a4710;border:1px dashed rgba(197,155,39,0.4)}
-.btn{width:100%;padding:15px;border:0;border-radius:14px;background:linear-gradient(135deg,var(--primary),var(--secondary));color:#fff;font:inherit;font-size:16px;font-weight:600;cursor:pointer}
-.btn:active{transform:scale(.98)}.btn:disabled{opacity:.6}
-.btn.s{width:auto;padding:6px 14px;font-size:12px;background:#fff;color:var(--primary);border:1.5px solid var(--primary);font-weight:600;margin-left:4px;border-radius:8px}
-.btn.d{color:#a93226;border-color:#f5b7b1}
-.ok{text-align:center;background:linear-gradient(160deg,#fffcf5,#fff);border:1.5px solid #e6d5a7;padding:30px 20px}
-.ok .big{font-size:50px;margin-bottom:5px}.ok h2{color:var(--primary);margin:6px 0;font-size:22px}
-.err{background:#fdecea;color:#b3261e;padding:14px;border-radius:12px;margin-bottom:16px;font-size:14px;border:1px solid #f5c6cb}
-.item{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:14px 0;border-bottom:1px dashed var(--border)}
-.item:last-child{border:0}.item .t{font-weight:600;font-size:14.5px;color:var(--primary)}
-.item .m{color:var(--muted);font-size:12.5px;margin-top:2px}
-.badge-status{padding:3px 10px;border-radius:20px;font-size:11px;font-weight:600;display:inline-block}
-.badge-pending{background:#fcf3cf;color:#7d6608}
-.badge-confirmed{background:#e8f8f5;color:#117a65}
-.badge-cancelled{background:#f5b7b1;color:#78281f}
-.hide{display:none!important}
-footer{text-align:center;color:var(--muted);font-size:12px;padding:10px 0 30px}
-.ch{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px}
-.ch b{color:var(--primary);font-size:16px;font-weight:600}
-.ch button{width:36px;height:36px;border-radius:50%;border:1.5px solid var(--border);background:#fff;font-size:18px;color:var(--primary);cursor:pointer;display:grid;place-items:center}
-.cg{display:grid;grid-template-columns:repeat(7,1fr);gap:6px}
-.cw{text-align:center;font-size:12px;color:var(--muted);padding:4px 0;font-weight:500}
-.cd{aspect-ratio:1;border:1.5px solid var(--border);border-radius:12px;background:#fff;font:inherit;font-size:14px;padding:0;display:flex;flex-direction:column;align-items:center;justify-content:center;cursor:pointer;color:var(--text);font-weight:500}
-.cd small{font-size:8.5px;color:#c0392b;margin-top:1px;font-weight:600}
-.cd.td{border-color:var(--accent);background:#fffcf5}
-.cd.on{background:linear-gradient(135deg,var(--primary),var(--secondary));color:#fff;border-color:transparent}
-.cd:disabled{background:#f4f1ea;color:#b8b2a3;border-color:transparent;cursor:default}
-</style></head><body>
-<div class="hero"><div class="in">
- <span class="badge">🌿 รพ.สต.คลองจระเข้</span>
- <h1>คลินิกการแพทย์แผนไทย</h1>
- <p id="hi">สืบสานภูมิปัญญาไทย ใส่ใจสุขภาพคุณ</p>
- <div id="lgn-box"></div>
-</div></div>
+:root{--green:#244235;--green2:#436d59;--gold:#c59b27;--goldbg:#fdf8e2;--bg:#fbf8f1;--card:#fff;--text:#2c2c2c;--muted:#787878;--border:#e4dcce;--red:#a93226;--blue:#286090}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}body{margin:0;font-family:Prompt,sans-serif;background:var(--bg);color:var(--text);line-height:1.55}
+.hero{background:linear-gradient(135deg,#1b3228,var(--green),#355848);border-bottom:4px solid var(--gold);color:#fff;text-align:center;padding:34px 18px 66px}.hero .tag{display:inline-block;color:#f3dda4;border:1px solid #8d762f;background:#ffffff14;padding:5px 14px;border-radius:40px;font-size:12px}.hero h1{font-size:24px;margin:10px 0 2px}.hero p{margin:0;color:#e8e2d2;font-size:13px}.hero .welcome{margin-top:10px;font-size:13px}.wrap{max-width:760px;margin:-36px auto 0;padding:0 14px;position:relative}.tabs{display:flex;gap:5px;padding:6px;background:white;border:1px solid var(--border);box-shadow:0 6px 22px #24423512;border-radius:50px;margin-bottom:16px}.tabs button{flex:1;border:0;background:transparent;color:var(--muted);padding:10px 6px;border-radius:40px;font:inherit;font-size:13px;cursor:pointer}.tabs button.active{background:linear-gradient(135deg,var(--green),var(--green2));color:#fff;font-weight:600}.card{background:var(--card);border:1px solid var(--border);border-radius:18px;padding:19px;margin-bottom:14px;box-shadow:0 4px 18px #2442350b}.title{display:flex;align-items:center;gap:10px;color:var(--green);font-weight:600;margin:0 0 14px}.title .num{display:grid;place-items:center;background:var(--goldbg);color:#a17d18;border:1px solid #e7d9a8;width:31px;height:31px;border-radius:50%;font-size:13px;flex:none}.services{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.service{border:1.5px solid var(--border);background:#fff;text-align:left;border-radius:14px;padding:14px;font:inherit;cursor:pointer;color:var(--text)}.service strong{display:block;color:var(--green);font-size:14px}.service span{font-size:12px;color:var(--muted)}.service.active{border-color:var(--gold);background:#fffcf5}.monthhead{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:10px}.monthhead strong{color:var(--green)}.monthhead button{height:36px;width:36px;border:1px solid var(--border);border-radius:50%;background:white;color:var(--green);font-size:20px;cursor:pointer}.calendar{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:5px}.weekday{text-align:center;color:var(--muted);font-size:11px;padding:5px 0}.day{min-height:43px;border:1px solid var(--border);border-radius:9px;background:#fff;font:inherit;font-size:13px;cursor:pointer;color:var(--text);padding:3px 0}.day small{display:block;font-size:9px;color:#bb483d;line-height:1.1}.day.selected{background:linear-gradient(135deg,var(--green),var(--green2));border-color:var(--green);color:#fff}.day.today{border-color:var(--gold)}.day:disabled{background:#f2f0eb;color:#b6b2a9;border-color:transparent;cursor:not-allowed}.timegrid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:9px}.timebtn{padding:13px 5px;border:1.5px solid var(--border);border-radius:12px;background:white;font:inherit;font-size:14px;cursor:pointer}.timebtn.active{background:var(--green);color:white;border-color:var(--green)}.timebtn:disabled{background:#f4f1ea;color:#b5b0a1;border-color:transparent;text-decoration:line-through;cursor:not-allowed}.hint{color:var(--muted);font-size:12px;text-align:center;padding:10px 0}.field{margin-bottom:13px}label{display:block;font-size:13px;color:var(--muted);margin:0 0 5px 2px}input,textarea{width:100%;border:1.5px solid var(--border);border-radius:11px;padding:12px 13px;background:white;color:var(--text);font:inherit;outline:none}input:focus,textarea:focus{border-color:var(--green)}input[readonly]{background:#f7f5f0;color:#526257}.summary{background:var(--goldbg);border:1px dashed #dec875;color:#5a4710;border-radius:12px;padding:12px;margin:12px 0;font-size:13px}.btn{border:0;border-radius:12px;background:linear-gradient(135deg,var(--green),var(--green2));color:white;font:inherit;font-weight:600;padding:13px 16px;cursor:pointer}.btn:disabled{opacity:.55;cursor:not-allowed}.btn.full{width:100%}.btn.small{padding:7px 12px;font-size:12px;border-radius:8px}.btn.light{background:white;color:var(--green);border:1px solid var(--green)}.btn.danger{background:white;color:var(--red);border:1px solid #f0b9b4}.statusmsg{font-size:13px;border-radius:10px;padding:10px 12px;background:#edf7ef;color:#245a35;margin-top:10px}.statusmsg.warn{background:#fff3d5;color:#805b00}.alert{padding:13px 15px;border-radius:12px;margin-bottom:14px;font-size:13px;background:#fdecea;color:#a52720;border:1px solid #f5c6cb}.hidden{display:none!important}.linebtn{border:1px solid #0a8f42;background:#06c755;color:white;border-radius:25px;padding:9px 17px;font:inherit;font-size:13px;cursor:pointer}.booking-item{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;padding:13px 0;border-bottom:1px dashed var(--border)}.booking-item:last-child{border-bottom:0}.booking-item .meta{font-size:12px;color:var(--muted);margin-top:4px}.booking-item strong{color:var(--green);font-size:14px}.pill{display:inline-block;padding:3px 8px;border-radius:20px;font-size:10px;font-weight:600;margin-left:4px}.pill.pending{color:#7d6608;background:#fcf3cf}.pill.confirmed{color:#117a65;background:#e8f8f5}.pill.cancelled{color:#78281f;background:#f5b7b1}.staffrow{display:flex;flex-wrap:wrap;gap:8px;justify-content:flex-end}.note{font-size:12px;color:var(--muted);margin-top:6px}.two{display:grid;grid-template-columns:1fr 1fr;gap:10px}.footer{text-align:center;color:var(--muted);font-size:11px;padding:22px 0 30px}
+@media(max-width:480px){.hero h1{font-size:21px}.card{padding:15px}.tabs button{font-size:11.5px}.calendar{gap:3px}.day{min-height:39px;border-radius:7px}.services{grid-template-columns:1fr}.booking-item{flex-direction:column}.staffrow{justify-content:flex-start}.two{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<header class="hero">
+  <span class="tag">🌿 รพ.สต.คลองจระเข้</span>
+  <h1>คลินิกการแพทย์แผนไทย</h1>
+  <p>สืบสานภูมิปัญญาไทย ใส่ใจสุขภาพคุณ</p>
+  <div id="welcome" class="welcome">กำลังเชื่อมต่อ LINE...</div>
+  <div id="loginArea" style="margin-top:8px"></div>
+</header>
+<main class="wrap">
+  <nav class="tabs" aria-label="เมนูหลัก">
+    <button class="active" data-tab="booking">จองคิวบริการ</button>
+    <button data-tab="history">ประวัติของฉัน</button>
+    <button data-tab="admin">เจ้าหน้าที่</button>
+  </nav>
+  <div id="globalError" class="alert hidden" role="alert"></div>
 
-<div class="wrap">
-<div class="seg"><button class="on" data-t="b">จองคิวบริการ</button><button data-t="q">ประวัติของฉัน</button><button data-t="a">เจ้าหน้าที่</button></div>
-<div id="err" class="err hide"></div>
+  <section id="bookingSection">
+    <div class="card">
+      <h2 class="title"><span class="num">1</span>เลือกรายการบริการ</h2>
+      <div class="services" id="services"></div>
+    </div>
+    <div class="card">
+      <h2 class="title"><span class="num">2</span>เลือกวันที่รับบริการ</h2>
+      <div class="note" style="margin-top:-8px;margin-bottom:10px">เปิดให้บริการวันจันทร์–ศุกร์ · ช่วงละ 30 นาที · 09:00–12:00 น.</div>
+      <div class="monthhead"><button id="prevMonth" type="button" aria-label="เดือนก่อน">‹</button><strong id="monthLabel"></strong><button id="nextMonth" type="button" aria-label="เดือนถัดไป">›</button></div>
+      <div class="calendar" id="calendar"></div>
+      <div class="note">วันสีเทาคือวันหยุด วันที่เต็ม หรือวันที่ไม่สามารถจองได้</div>
+    </div>
+    <div class="card">
+      <h2 class="title"><span class="num">3</span>เลือกเวลาเริ่มรับบริการ</h2>
+      <div class="timegrid" id="times"></div>
+      <div id="timeHint" class="hint">กรุณาเลือกวันที่ในปฏิทินก่อน</div>
+    </div>
+    <div class="card">
+      <h2 class="title"><span class="num">4</span>ข้อมูลผู้จอง</h2>
+      <div class="field"><label for="patientName">ชื่อโปรไฟล์ LINE</label><input id="patientName" readonly placeholder="เข้าสู่ระบบ LINE เพื่อดึงชื่อ"></div>
+      <div class="field"><label for="phone">เบอร์โทรศัพท์มือถือ 10 หลัก</label><input id="phone" type="tel" inputmode="numeric" maxlength="10" placeholder="เช่น 0812345678" autocomplete="tel"><div class="note">LINE Login ปกติไม่เปิดเผยเบอร์โทรศัพท์ ผู้จองต้องกรอกเบอร์ที่ติดต่อได้</div></div>
+      <div class="summary" id="summary">กรุณาเลือกบริการ วันที่ และเวลา</div>
+      <button class="btn full" id="submitBooking" type="button">ส่งคำขอจองคิว</button>
+      <div id="bookingResult" class="hidden"></div>
+    </div>
+  </section>
 
-<section id="b">
- <div class="card"><div class="st"><i>1</i>เลือกรายการบริการ</div><div class="svs" id="sv"></div></div>
- <div class="card"><div class="st"><i>2</i><div>เลือกวันที่ต้องการมารับบริการ<br><small style="font-weight:300;color:var(--muted)">เปิดให้บริการ จันทร์ – ศุกร์</small></div></div>
-  <div class="ch"><button id="cprev">‹</button><b id="mt"></b><button id="cnext">›</button></div><div class="cg" id="cg"></div></div>
- <div class="card"><div class="st"><i>3</i>เลือกช่วงเวลา</div><div class="slots" id="sl"></div><div class="hint" id="slh">กรุณาเลือกวันในปฏิทินก่อนครับ</div></div>
- <div class="card"><div class="st"><i>4</i>ข้อมูลผู้มารับบริการ</div>
-  <label for="nm">ชื่อ - นามสกุล</label><input id="nm" placeholder="เช่น สมชาย ใจดี">
-  <label for="ph">เบอร์โทรศัพท์มือถือ</label><input id="ph" type="tel" inputmode="numeric" maxlength="10" placeholder="เช่น 0812345678">
-  <div class="sum" id="sum">ยังไม่ได้เลือกรายการบริการ</div>
-  <button class="btn" id="go">ยืนยันส่งคำขอจองคิว</button></div>
- <div id="done" class="card ok hide"></div>
-</section>
+  <section id="historySection" class="hidden">
+    <div class="card"><h2 class="title">📋 ประวัติการจองของฉัน</h2><div id="historyList"><div class="hint">เข้าสู่ระบบ LINE เพื่อดูประวัติ</div></div></div>
+  </section>
 
-<section id="q" class="hide">
- <div class="card">
-  <div class="st"><i>📋</i>ประวัติการจองคิวของคุณ</div>
-  <div id="my-history"><div class="hint">กำลังโหลดข้อมูลประวัติ...</div></div>
- </div>
-</section>
-
-<section id="a" class="hide">
- <div class="card" id="lg"><div class="st"><i>🔒</i>เข้าสู่ระบบเจ้าหน้าที่ รพ.สต.คลองจระเข้</div><input id="pin" type="password" placeholder="กรอกรหัสผ่านเจ้าหน้าที่"><button class="btn" id="li">เข้าสู่ระบบ</button></div>
- <div id="ad" class="hide">
-   <div class="card" id="staff-line-id-card" style="display:none"><div class="st"><i>🆔</i>LINE User ID สำหรับตั้งค่ารับแจ้งเตือน</div><div class="hint" style="text-align:left">คัดลอกรหัสนี้ไปใส่ใน Script Properties ชื่อ <b>ADMIN_LINE_USER_IDS</b> (หากมีเจ้าหน้าที่หลายคนให้คั่นด้วยเครื่องหมายจุลภาค)</div><div id="staff-line-id" style="padding:10px;background:#f4f1ea;border-radius:8px;word-break:break-all;user-select:all;font-size:13px"></div></div>
-  <div class="card"><div class="st"><i>🗓️</i><div>ภาพรวมปฏิทินคิวรายเดือน<br><small style="font-weight:300;color:var(--muted)">คลิกเลือกวันที่ต้องการจัดการคิว</small></div></div>
-   <div class="ch"><button id="acprev">‹</button><b id="amt"></b><button id="acnext">›</button></div><div class="cg" id="acg"></div></div>
-  <div class="card"><div class="st"><i>📋</i>รายการคิววันที่: <span id="ldt" style="font-size:14px;color:var(--primary)"></span></div><div id="bl"></div></div>
- </div>
-</section>
-<footer>🌿 โรงพยาบาลส่งเสริมสุขภาพตำบลคลองจระเข้</footer>
-</div>
-
+  <section id="adminSection" class="hidden">
+    <div class="card" id="adminLoginCard">
+      <h2 class="title">🔐 เข้าสู่ระบบเจ้าหน้าที่</h2>
+      <div class="field"><label for="adminPassword">รหัสผ่านเจ้าหน้าที่</label><input id="adminPassword" type="password" placeholder="กรอกรหัสผ่าน" autocomplete="current-password"></div>
+      <button class="btn full" id="adminLogin" type="button">เข้าสู่ระบบ</button>
+      <div class="note" style="margin-top:12px">LINE User ID ของบัญชีที่เปิดเว็บนี้ (ใช้ตั้งค่า ADMIN_LINE_USER_IDS):<br><code id="adminLineId" style="overflow-wrap:anywhere">เข้าสู่ระบบ LINE ก่อน</code></div>
+    </div>
+    <div id="adminPanel" class="hidden">
+      <div class="card">
+        <h2 class="title">🗓️ ปฏิทินจัดการคิว</h2>
+        <div class="monthhead"><button id="adminPrevMonth" type="button" aria-label="เดือนก่อน">‹</button><strong id="adminMonthLabel"></strong><button id="adminNextMonth" type="button" aria-label="เดือนถัดไป">›</button></div>
+        <div class="calendar" id="adminCalendar"></div>
+        <div class="field" style="margin-top:12px"><label for="adminDate">วันที่จัดการ</label><input type="date" id="adminDate"></div>
+      </div>
+      <div class="card">
+        <h2 class="title">🏖️ จัดการวันหยุด / วันลา / วันติดธุระ</h2>
+        <div class="field"><label for="dayOffReason">เหตุผลวันหยุด</label><input id="dayOffReason" maxlength="200" value="เจ้าหน้าที่ติดธุระ / ลาหยุด"></div>
+        <div class="two"><button class="btn" id="saveDayOff" type="button">บันทึกวันหยุด</button><button class="btn danger" id="removeDayOff" type="button">ยกเลิกวันหยุด</button></div>
+        <div id="dayOffStatus" class="statusmsg">สถานะวัน: กำลังตรวจสอบ</div>
+        <div class="note">หากวันที่เลือกมีรายการจองที่ยังไม่ยกเลิก ระบบจะไม่ให้ตั้งวันหยุดจนกว่าจะจัดการคิวเดิมก่อน</div>
+      </div>
+      <div class="card"><h2 class="title">📋 รายการจองวันที่ <span id="adminDayLabel"></span></h2><div id="adminBookings"><div class="hint">กำลังโหลดคิว...</div></div></div>
+      <button class="btn light full" id="adminLogout" type="button">ออกจากระบบเจ้าหน้าที่</button>
+    </div>
+  </section>
+  <footer class="footer">โรงพยาบาลส่งเสริมสุขภาพตำบลคลองจระเข้</footer>
+</main>
 <script>
-const API_URL = 'https://script.google.com/macros/s/AKfycbxEGYFozuo_BKCoLuguHHaUkBTwaGhOQEfx1Aklv1lpUR7k9RSnL76oiiu9FLaQ1iEz/exec';
+'use strict';
+const API_URL = 'https://script.google.com/macros/s/AKfycbwSbSsQXxi4cCgurwKmdSY2bA3mrynG-7--WxW_d_iFFZC2Kwd_8WXFis_8RQnvKmBC/exec';
 const LIFF_ID = '2012052461-iCqWd1tf';
 const AHEAD_MONTHS = 3;
-
-const SV=[
- {n:'นวดแผนไทย',i:'💆',d:'นวดผ่อนคลายกล้ามเนื้อ บรรเทาอาการปวดตึง'},
- {n:'อบสมุนไพร',i:'♨️',d:'อบไอน้ำสมุนไพรไทย ช่วยขับเหงื่อ ผ่อนคลาย'}
+const SLOTS = ['09:00','09:30','10:00','10:30','11:00','11:30'];
+const SERVICES = [
+  {name:'นวดแผนไทย',icon:'💆',description:'นวดผ่อนคลายกล้ามเนื้อ บรรเทาอาการปวดตึง'},
+  {name:'อบสมุนไพร',icon:'♨️',description:'อบไอน้ำสมุนไพรไทย ช่วยผ่อนคลาย'}
 ];
+const $ = selector => document.querySelector(selector);
+const key = date => date.getFullYear()+'-'+String(date.getMonth()+1).padStart(2,'0')+'-'+String(date.getDate()).padStart(2,'0');
+const dateObj = text => new Date(text+'T00:00:00');
+const thaiDate = text => dateObj(text).toLocaleDateString('th-TH',{weekday:'short',day:'numeric',month:'short',year:'numeric'});
+const escapeHtml = value => String(value == null ? '' : value).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const today = key(new Date());
+const maxDate = (()=>{const d=new Date();d.setMonth(d.getMonth()+AHEAD_MONTHS);return key(d);})();
+const monthNames = ['มกราคม','กุมภาพันธ์','มีนาคม','เมษายน','พฤษภาคม','มิถุนายน','กรกฎาคม','สิงหาคม','กันยายน','ตุลาคม','พฤศจิกายน','ธันวาคม'];
+let idToken = '';
+let lineName = '';
+let selected = {service:'',date:'',time:''};
+let availabilityCache = {};
+let monthStatusCache = {};
+let publicMonth = {year:new Date().getFullYear(),month:new Date().getMonth()};
+let adminMonth = {year:new Date().getFullYear(),month:new Date().getMonth()};
+let adminDate = today;
+let adminPassword = '';
 
-const $=s=>document.querySelector(s);
-const dt=k=>new Date(k+'T00:00:00');
-const th=k=>dt(k).toLocaleDateString('th-TH',{weekday:'short',day:'numeric',month:'short',year:'2-digit'});
-const esc=s=>String(s==null?'':s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-const key=d=>d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');
-let AV={},S={},lineUserId='';
-
-function err(e){const x=$('#err');x.textContent=e?(e.message||e):'';x.classList.toggle('hide',!e);if(e)scrollTo({top:0,behavior:'smooth'});}
-
-async function run(f,...a){
- const r=await fetch(API_URL,{method:'POST',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify({f:f,a:a})});
- const j=await r.json();
- if(!j.ok)throw new Error(j.error);
- return j.data;
+function showError(message){const box=$('#globalError');box.textContent=message||'';box.classList.toggle('hidden',!message);if(message)window.scrollTo({top:0,behavior:'smooth'});}
+function clearError(){showError('');}
+async function api(functionName,...args){
+  const response = await fetch(API_URL,{method:'POST',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify({f:functionName,a:args})});
+  let data;
+  try{data=await response.json();}catch(e){throw new Error('เซิร์ฟเวอร์ตอบกลับไม่ถูกต้อง กรุณาตรวจ URL ของ Apps Script และ Deploy ใหม่');}
+  if(!data.ok)throw new Error(data.error||'เกิดข้อผิดพลาด');
+  return data.data;
 }
+async function withBusy(button, callback){if(button.disabled)return;const original=button.textContent;button.disabled=true;button.textContent='กำลังดำเนินการ...';try{await callback();}catch(e){showError(e.message||String(e));}finally{button.disabled=false;button.textContent=original;}}
+function tokenNow(){if(!window.liff||!liff.isLoggedIn()&&!liff.isInClient())return '';return liff.getIDToken()||'';}
 
-async function av(d,force){if(force||!AV[d])AV[d]=await run('getAvailability',d);return AV[d]}
-async function busy(b,f){if(b.disabled)return;const t=b.textContent;b.disabled=true;b.textContent='กำลังดำเนินการ...';try{await f()}catch(e){err(e)}finally{b.disabled=false;b.textContent=t}}
-
-document.querySelectorAll('.seg button').forEach(b=>b.onclick=async()=>{
- document.querySelectorAll('.seg button').forEach(x=>x.classList.toggle('on',x==b));
- ['b','q','a'].forEach(i=>$('#'+i).classList.toggle('hide',i!=b.dataset.t));err();
- if(b.dataset.t=='q') loadMyHistory();
- if(b.dataset.t=='a' && !$('#ad').classList.contains('hide')) loadAdminCal();
-});
-
-const TODAY=key(new Date());
-const MAXD=(()=>{const d=new Date();d.setMonth(d.getMonth()+AHEAD_MONTHS);return key(d)})();
-const MN=['มกราคม','กุมภาพันธ์','มีนาคม','เมษายน','พฤษภาคม','มิถุนายน','กรกฎาคม','สิงหาคม','กันยายน','ตุลาคม','พฤศจิกายน','ธันวาคม'];
-let V={y:new Date().getFullYear(),m:new Date().getMonth()},MS={};
-
-async function loadMS(){
- const id=V.y+'-'+V.m;if(MS[id])return;
- try{MS[id]=(await run('getMonthStatus',key(new Date(V.y,V.m,1)),key(new Date(V.y,V.m+1,0))))||{dayOffs:{},full:[]}}catch(e){MS[id]={dayOffs:{},full:[]}}
- renderCal();
+function drawServices(){
+  $('#services').innerHTML=SERVICES.map(s=>`<button type="button" class="service ${selected.service===s.name?'active':''}" data-service="${escapeHtml(s.name)}"><span style="font-size:24px">${s.icon}</span><strong>${escapeHtml(s.name)}</strong><span>${escapeHtml(s.description)}</span></button>`).join('');
+  $('#services').querySelectorAll('[data-service]').forEach(btn=>btn.addEventListener('click',()=>{selected.service=btn.dataset.service;drawServices();drawSummary();}));
 }
-function renderCal(){
- const st=MS[V.y+'-'+V.m]||{},offs=st.dayOffs||{},fulls=st.full||[],now=new Date(),mx=dt(MAXD);
- $('#mt').textContent=MN[V.m]+' '+(V.y+543);
- const first=new Date(V.y,V.m,1).getDay(),n=new Date(V.y,V.m+1,0).getDate();
- let h=['อา','จ','อ','พ','พฤ','ศ','ส'].map(x=>`<div class="cw">${x}</div>`).join('')+'<div></div>'.repeat(first);
- for(let d=1;d<=n;d++){
-  const x=new Date(V.y,V.m,d),k=key(x),wk=x.getDay()%6==0,off=k in offs,full=fulls.indexOf(k)>-1,dis=wk||k<TODAY||k>MAXD||off||full;
-  h+=`<button class="cd${S.date==k?' on':''}${k==TODAY?' td':''}" data-v="${k}" ${dis?'disabled':''}>${d}${off?'<small>หยุด</small>':full?'<small>เต็ม</small>':''}</button>`;
- }
- $('#cg').innerHTML=h;
- $('#cg').querySelectorAll('.cd').forEach(b=>b.onclick=async()=>{
-  S.date=b.dataset.v;S.time='';draw();
-  try{await av(S.date)}catch(e){err(e)}draw();
- });
- $('#cprev').disabled=V.y*12+V.m<=now.getFullYear()*12+now.getMonth();
- $('#cnext').disabled=V.y*12+V.m>=mx.getFullYear()*12+mx.getMonth();
- loadMS();
+async function loadMonthStatus(year,month){
+  const id=year+'-'+month;
+  if(monthStatusCache[id])return monthStatusCache[id];
+  const start=key(new Date(year,month,1));const end=key(new Date(year,month+1,0));
+  const result=await api('getMonthStatus',start,end);
+  monthStatusCache[id]=result||{dayOffs:{},full:[]};return monthStatusCache[id];
 }
-$('#cprev').onclick=()=>{if(--V.m<0){V.m=11;V.y--}renderCal()};
-$('#cnext').onclick=()=>{if(++V.m>11){V.m=0;V.y++}renderCal()};
-
-function draw(){
- $('#sv').innerHTML=SV.map(s=>`<button class="sv${S.service==s.n?' on':''}" data-v="${s.n}"><div class="ic">${s.i}</div><div><b>${s.n}</b><span>${s.d}</span></div></button>`).join('');
- $('#sv').querySelectorAll('button').forEach(b=>b.onclick=()=>{S.service=b.dataset.v;draw()});
- renderCal();
- const a=S.date&&AV[S.date],sl=(a&&a.slots)||[];
- $('#slh').classList.toggle('hide',sl.length>0);
- $('#slh').textContent=!S.date?'กรุณาเลือกวันในปฏิทินก่อนครับ':!a?'กำลังโหลดช่วงเวลา...':'';
- $('#sl').innerHTML=sl.map(s=>`<button class="sl${S.time==s.time?' on':''}" data-v="${esc(s.time)}" ${s.available?'':'disabled'}>${esc(s.time)}</button>`).join('');
- $('#sl').querySelectorAll('button').forEach(b=>b.onclick=()=>{S.time=b.dataset.v;draw()});
- $('#sum').innerHTML=(S.service||S.date||S.time)?`<b>บริการ: ${S.service||'—'}</b><br>📅 วันที่: ${S.date?th(S.date):'—'} &nbsp; ⏰ เวลา: ${S.time?esc(S.time)+' น.':'—'}`:'ยังไม่ได้เลือกรายการบริการ';
-}
-
-$('#go').onclick=async()=>{
- err();$('#done').classList.add('hide');
- const nm=$('#nm').value.trim(),ph=$('#ph').value.replace(/\D/g,'');
- if(!S.service||!S.date||!S.time)return err('กรุณาเลือกบริการ วัน และช่วงเวลาให้ครบถ้วน');
- if(!lineUserId)return err('กรุณาเปิดหน้านี้ผ่าน LINE และเข้าสู่ระบบก่อนจอง เพื่อให้ระบบบันทึก LINE User ID และแจ้งผลการจองได้');
- if(!nm)return err('กรุณากรอกชื่อ - นามสกุลผู้รับบริการ');
- if(!/^0\d{8,9}$/.test(ph))return err('กรุณากรอกเบอร์โทรศัพท์มือถือให้ถูกต้อง (10 หลัก)');
- const b=$('#go');b.disabled=true;b.textContent='กำลังส่งคำขอ...';
- try{
-  const lineIdToken=getLineIdToken();
-  const r=await run('createBooking',{service:S.service,date:S.date,time:S.time,name:nm,phone:ph,lineIdToken});
-  const x=$('#done');x.classList.remove('hide');
-  x.innerHTML=`<div class="big">🌿</div><h2>ส่งคำขอจองคิวสำเร็จ</h2><div class="hint">${esc(r.notificationMessage)}</div>${r.adminNotificationSent?'':'<div class="err" style="text-align:left;margin-top:12px">ระบบยังส่งแจ้งเตือนเจ้าหน้าที่ไม่สำเร็จ กรุณาติดต่อ รพ.สต.คลองจระเข้เพื่อให้เจ้าหน้าที่ตรวจสอบรายการจอง</div>'}`;
-  x.scrollIntoView({behavior:'smooth'});S={};
- }catch(e){err(e)}
- draw();b.disabled=false;b.textContent='ยืนยันส่งคำขอจองคิว';
-};
-
-async function loadMyHistory(){
- const box=$('#my-history');
- if(!lineUserId){box.innerHTML='<div class="hint">กรุณาเปิดใช้งานผ่านแอปพลิเคชัน LINE เพื่อดูประวัติส่วนตัว</div>';return;}
- box.innerHTML='<div class="hint">กำลังโหลดข้อมูลประวัติ...</div>';
- try{
-  const list=await run('getUserHistory',getLineIdToken());
-  box.innerHTML=list.length?list.map(b=>`
-   <div class="item">
-    <div>
-     <div class="t">${esc(b.service)} <span class="badge-status badge-${b.status.toLowerCase()}">${b.status=='PENDING'?'รออนุมัติ':b.status=='CONFIRMED'?'ยืนยันแล้ว':'ยกเลิกแล้ว'}</span></div>
-     <div class="m">📅 ${th(b.date)} · ${esc(b.time)} น.</div>
-    </div>
-   </div>`).join(''):'<div class="hint">ยังไม่มีประวัติการจองคิวในระบบ</div>';
- }catch(e){box.innerHTML='<div class="hint">ไม่สามารถโหลดข้อมูลประวัติได้ในขณะนี้</div>'}
-}
-
-let AV_Y=new Date().getFullYear(),AV_M=new Date().getMonth(),adminDate=TODAY,pin='';
-async function loadAdminCal(){
- $('#amt').textContent=MN[AV_M]+' '+(AV_Y+543);
- const first=new Date(AV_Y,AV_M,1).getDay(),n=new Date(AV_Y,AV_M+1,0).getDate();
- let h=['อา','จ','อ','พ','พฤ','ศ','ส'].map(x=>`<div class="cw">${x}</div>`).join('')+'<div></div>'.repeat(first);
- for(let d=1;d<=n;d++){
-  const k=key(new Date(AV_Y,AV_M,d));
-  h+=`<button class="cd${adminDate==k?' on':''}" data-v="${k}">${d}</button>`;
- }
- $('#acg').innerHTML=h;
- $('#acg').querySelectorAll('.cd').forEach(b=>b.onclick=()=>{adminDate=b.dataset.v;loadAdminCal();loadAdminDay()});
- loadAdminDay();
-}
-$('#acprev').onclick=()=>{if(--AV_M<0){AV_M=11;AV_Y--}loadAdminCal()};
-$('#acnext').onclick=()=>{if(++AV_M>11){AV_M=0;AV_Y++}loadAdminCal()};
-
-async function loadAdminDay(){
- $('#ldt').textContent=th(adminDate);
- try{
-  const r=await run('getAdminData',pin,adminDate);
-  const bk=r.bookings||[];
-  $('#bl').innerHTML=bk.length?bk.map(b=>`
-   <div class="item">
-    <div>
-     <div class="t">${esc(b.time)} น. · ${esc(b.service)} <span class="badge-status badge-${b.status.toLowerCase()}">${b.status=='PENDING'?'รออนุมัติ':b.status=='CONFIRMED'?'ยืนยันแล้ว':'ยกเลิก'}</span></div>
-     <div class="m">👤 ${esc(b.name)} (📞 ${esc(b.phone)})</div>
-    </div>
-    <div>
-     ${b.status=='PENDING'?`<button class="btn s" data-conf="${b.id}">ยืนยัน</button>`:''}
-     ${b.status!='CANCELLED'?`<button class="btn s d" data-canc="${b.id}">ยกเลิก</button>`:''}
-    </div>
-   </div>`).join(''):'<div class="hint">ไม่มีรายการจองในวันนี้</div>';
-
-  $('#bl').querySelectorAll('[data-conf]').forEach(btn=>btn.onclick=()=>busy(btn,async()=>{
-   await run('confirmBooking',pin,btn.dataset.conf);
-   loadAdminDay();
-   MS={};
-  }));
-  $('#bl').querySelectorAll('[data-canc]').forEach(btn=>btn.onclick=()=>busy(btn,async()=>{
-   if(!confirm('ต้องการยกเลิกคิวนี้ใช่หรือไม่?'))return;
-   await run('cancelBooking',pin,btn.dataset.canc);
-   loadAdminDay();
-   MS={};
-  }));
- }catch(e){err(e)}
-}
-
-$('#li').onclick=()=>busy($('#li'),async()=>{
- err();pin=$('#pin').value;await run('verifyAdmin',pin);
- $('#lg').classList.add('hide');$('#ad').classList.remove('hide');
- if(lineUserId){$('#staff-line-id').textContent=lineUserId;$('#staff-line-id-card').style.display='block';}
- loadAdminCal();
-});
-$('#pin').onkeydown=e=>{if(e.key=='Enter')$('#li').click()};
-
-function getLineIdToken(){
- if(!window.liff || !liff.isLoggedIn()) throw new Error('กรุณาเข้าสู่ระบบผ่าน LINE ก่อน');
- const token=liff.getIDToken();
- if(!token) throw new Error('ไม่พบ LINE ID token กรุณาตรวจสอบว่า LIFF เปิด scope “openid” และเข้าสู่ระบบใหม่');
- return token;
-}
-
-async function init(){
- draw();
- try{
-  if(LIFF_ID){
-   await liff.init({liffId:LIFF_ID});
-   if(!liff.isLoggedIn()){
-    $('#lgn-box').innerHTML='<button class="lgn" onclick="liff.login()">เข้าสู่ระบบด้วย LINE</button>';
-    $('#hi').textContent='กรุณาเข้าสู่ระบบด้วย LINE เพื่อจองคิวและรับผลการยืนยัน';
-    return;
-   }
-   const p=await liff.getProfile();
-   lineUserId=p.userId;
-   $('#hi').textContent='ยินดีต้อนรับ คุณ'+p.displayName+' 👋';
-   if(!$('#nm').value)$('#nm').value=p.displayName;
-   if(!liff.getIDToken()) $('#hi').textContent='บัญชี LINE พร้อมใช้งาน แต่ต้องเปิด scope openid ใน LINE Developers ก่อนจองคิว';
-  }else{
-   $('#hi').textContent='กรุณาตั้งค่า LIFF ID ก่อนใช้งาน';
+async function renderPublicCalendar(){
+  const {year,month}=publicMonth;$('#monthLabel').textContent=monthNames[month]+' '+(year+543);
+  const calendar=$('#calendar');calendar.innerHTML='';
+  ['อา','จ','อ','พ','พฤ','ศ','ส'].forEach(d=>{const el=document.createElement('div');el.className='weekday';el.textContent=d;calendar.appendChild(el);});
+  const status=await loadMonthStatus(year,month);
+  const offset=new Date(year,month,1).getDay();for(let i=0;i<offset;i++){const empty=document.createElement('div');calendar.appendChild(empty);}
+  const count=new Date(year,month+1,0).getDate();
+  for(let d=1;d<=count;d++){
+    const date=key(new Date(year,month,d));const dow=new Date(year,month,d).getDay();const isOff=Object.prototype.hasOwnProperty.call(status.dayOffs||{},date);const isFull=(status.full||[]).includes(date);const disabled=dow===0||dow===6||date<today||date>maxDate||isOff||isFull;
+    const btn=document.createElement('button');btn.type='button';btn.className='day'+(selected.date===date?' selected':'')+(date===today?' today':'');btn.disabled=disabled;btn.dataset.date=date;
+    const label=isOff?'หยุด':isFull?'เต็ม':(dow===0||dow===6)?'หยุด':date<today?'ผ่าน':'';
+    btn.innerHTML=`${d}${label?`<small>${label}</small>`:''}`;
+    btn.addEventListener('click',async()=>{selected.date=date;selected.time='';drawSummary();await renderPublicCalendar();await loadAvailability(date);});calendar.appendChild(btn);
   }
- }catch(e){
-  console.error(e);
-  $('#hi').textContent='เชื่อมต่อ LINE ไม่สำเร็จ กรุณาเปิดลิงก์ผ่าน LINE และตรวจสอบการตั้งค่า LIFF';
-  $('#lgn-box').innerHTML='<button class="lgn" onclick="location.reload()">ลองเชื่อมต่ออีกครั้ง</button>';
- }
+  $('#prevMonth').disabled=year*12+month<=new Date().getFullYear()*12+new Date().getMonth();
+  $('#nextMonth').disabled=year*12+month>=dateObj(maxDate).getFullYear()*12+dateObj(maxDate).getMonth();
 }
-init();
-</script></body></html>
+async function loadAvailability(date,force){
+  try{if(force||!availabilityCache[date])availabilityCache[date]=await api('getAvailability',date);renderTimes(availabilityCache[date]);}
+  catch(e){$('#times').innerHTML='';$('#timeHint').textContent=e.message;}
+}
+function renderTimes(info){
+  const grid=$('#times');grid.innerHTML='';
+  if(!info){$('#timeHint').textContent='กรุณาเลือกวันที่ในปฏิทินก่อน';return;}
+  if(info.isDayOff||info.isWeekend){$('#timeHint').textContent=info.dayOffReason||'คลินิกปิดให้บริการในวันที่เลือก';return;}
+  info.slots.forEach(slot=>{const btn=document.createElement('button');btn.type='button';btn.className='timebtn'+(selected.time===slot.time?' active':'');btn.disabled=!slot.available;btn.textContent=slot.time+' น.'+(slot.booked?' · เต็ม':'');btn.addEventListener('click',()=>{selected.time=slot.time;renderTimes(info);drawSummary();});grid.appendChild(btn);});
+  $('#timeHint').textContent=info.slots.some(s=>s.available)?'แต่ละช่วงเวลา 30 นาที และรับจองได้เพียง 1 รายการต่อช่วง':'เวลาของวันนี้เต็มแล้ว';
+}
+function drawSummary(){
+  $('#summary').innerHTML=`<strong>บริการ:</strong> ${escapeHtml(selected.service||'—')}<br><strong>วันที่:</strong> ${selected.date?escapeHtml(thaiDate(selected.date)):'—'}<br><strong>เวลาเริ่ม:</strong> ${escapeHtml(selected.time||'—')} ${selected.time?'น.':''}`;
+}
+$('#prevMonth').addEventListener('click',async()=>{publicMonth.month--;if(publicMonth.month<0){publicMonth.month=11;publicMonth.year--;}await renderPublicCalendar();});
+$('#nextMonth').addEventListener('click',async()=>{publicMonth.month++;if(publicMonth.month>11){publicMonth.month=0;publicMonth.year++;}await renderPublicCalendar();});
+
+$('#submitBooking').addEventListener('click',async()=>withBusy($('#submitBooking'),async()=>{
+  clearError();$('#bookingResult').classList.add('hidden');
+  const token=tokenNow();const phone=$('#phone').value.replace(/\D/g,'');
+  if(!token)throw new Error('กรุณาเข้าสู่ระบบผ่าน LINE ก่อนส่งคำขอจอง');
+  if(!selected.service||!selected.date||!selected.time)throw new Error('กรุณาเลือกบริการ วันที่ และเวลาให้ครบ');
+  if(!/^0\d{9}$/.test(phone))throw new Error('กรุณากรอกเบอร์โทรศัพท์มือถือ 10 หลัก');
+  const result=await api('createBooking',{date:selected.date,time:selected.time,service:selected.service,phone:phone,idToken:token});
+  const box=$('#bookingResult');box.classList.remove('hidden');
+  box.innerHTML=`<div class="statusmsg">🌿 ${escapeHtml(result.notificationMessage)}<br>รหัสจอง: <strong>${escapeHtml(result.bookingId)}</strong></div>${result.adminNotificationSent?'':'<div class="statusmsg warn">ระบบบันทึกคิวแล้ว แต่ยังยืนยันไม่ได้ว่าส่ง LINE แจ้งเจ้าหน้าที่สำเร็จ กรุณาตรวจ Script Properties และ LINE OA</div>'}${result.userNotificationSent?'':'<div class="note">ไม่สามารถยืนยันการส่ง LINE ถึงผู้จองได้ โปรดตรวจว่าผู้จองเพิ่ม LINE OA เป็นเพื่อนแล้ว</div>'}`;
+  selected={service:'',date:'',time:''};availabilityCache={};monthStatusCache={};$('#phone').value='';drawServices();drawSummary();$('#times').innerHTML='';$('#timeHint').textContent='กรุณาเลือกวันที่ในปฏิทินก่อน';await renderPublicCalendar();box.scrollIntoView({behavior:'smooth',block:'center'});
+}));
+
+async function loadHistory(){
+  const box=$('#historyList');const token=tokenNow();if(!token){box.innerHTML='<div class="hint">กรุณาเปิดระบบผ่าน LINE และเข้าสู่ระบบเพื่อดูประวัติของคุณ</div>';return;}
+  box.innerHTML='<div class="hint">กำลังโหลด...</div>';
+  try{const list=await api('getUserHistory',token);if(!list.length){box.innerHTML='<div class="hint">ยังไม่มีประวัติการจอง</div>';return;}
+    box.innerHTML=list.map(item=>{const status=item.status==='PENDING'?'รอเจ้าหน้าที่ยืนยัน':item.status==='CONFIRMED'?'ยืนยันแล้ว':'ยกเลิกแล้ว';const klass=item.status==='PENDING'?'pending':item.status==='CONFIRMED'?'confirmed':'cancelled';return `<div class="booking-item"><div><strong>${escapeHtml(item.service)} <span class="pill ${klass}">${status}</span></strong><div class="meta">📅 ${escapeHtml(thaiDate(item.date))} · ⏰ ${escapeHtml(item.time)} น.</div><div class="meta">รหัสจอง: ${escapeHtml(item.id)}</div></div></div>`;}).join('');
+  }catch(e){box.innerHTML=`<div class="alert">${escapeHtml(e.message)} หาก token หมดอายุ กรุณาปิดแล้วเปิด LIFF ใหม่</div>`;}
+}
+
+// ---------- Staff tools ----------
+async function renderAdminCalendar(){
+  const {year,month}=adminMonth;$('#adminMonthLabel').textContent=monthNames[month]+' '+(year+543);const cal=$('#adminCalendar');cal.innerHTML='';
+  ['อา','จ','อ','พ','พฤ','ศ','ส'].forEach(d=>{const el=document.createElement('div');el.className='weekday';el.textContent=d;cal.appendChild(el);});
+  const offset=new Date(year,month,1).getDay();for(let i=0;i<offset;i++)cal.appendChild(document.createElement('div'));
+  const status=await loadMonthStatus(year,month);const n=new Date(year,month+1,0).getDate();
+  for(let d=1;d<=n;d++){const date=key(new Date(year,month,d));const off=Object.prototype.hasOwnProperty.call(status.dayOffs||{},date);const full=(status.full||[]).includes(date);const btn=document.createElement('button');btn.type='button';btn.className='day'+(adminDate===date?' selected':'');btn.dataset.date=date;btn.innerHTML=`${d}${off?'<small>หยุด</small>':full?'<small>เต็ม</small>':''}`;btn.addEventListener('click',()=>selectAdminDate(date));cal.appendChild(btn);}
+}
+async function selectAdminDate(date){adminDate=date;$('#adminDate').value=date;await renderAdminCalendar();await loadAdminDay();}
+$('#adminPrevMonth').addEventListener('click',async()=>{adminMonth.month--;if(adminMonth.month<0){adminMonth.month=11;adminMonth.year--;}await renderAdminCalendar();});
+$('#adminNextMonth').addEventListener('click',async()=>{adminMonth.month++;if(adminMonth.month>11){adminMonth.month=0;adminMonth.year++;}await renderAdminCalendar();});
+$('#adminDate').addEventListener('change',async()=>{if(/^\d{4}-\d{2}-\d{2}$/.test($('#adminDate').value)){const d=dateObj($('#adminDate').value);adminMonth={year:d.getFullYear(),month:d.getMonth()};await selectAdminDate($('#adminDate').value);}});
+$('#adminLogin').addEventListener('click',async()=>withBusy($('#adminLogin'),async()=>{clearError();const password=$('#adminPassword').value;if(!password)throw new Error('กรุณากรอกรหัสผ่านเจ้าหน้าที่');await api('verifyAdmin',password);adminPassword=password;$('#adminLoginCard').classList.add('hidden');$('#adminPanel').classList.remove('hidden');await selectAdminDate(today);}));
+$('#adminPassword').addEventListener('keydown',e=>{if(e.key==='Enter')$('#adminLogin').click();});
+async function loadAdminDay(){
+  if(!adminPassword)return;$('#adminDayLabel').textContent=thaiDate(adminDate);$('#adminBookings').innerHTML='<div class="hint">กำลังโหลด...</div>';
+  try{
+    const result=await api('getAdminData',adminPassword,adminDate);const off=result.dayOff;
+    if(off){$('#dayOffReason').value=off.reason;$('#dayOffStatus').textContent='สถานะวัน: ปิดทำการ — '+off.reason;$('#dayOffStatus').className='statusmsg warn';}
+    else{$('#dayOffStatus').textContent='สถานะวัน: เปิดทำการปกติ';$('#dayOffStatus').className='statusmsg';}
+    const bookings=result.bookings||[];
+    if(!bookings.length){$('#adminBookings').innerHTML='<div class="hint">ไม่มีรายการจองในวันนี้</div>';return;}
+    $('#adminBookings').innerHTML=bookings.map(b=>{const status=b.status==='PENDING'?'รอเจ้าหน้าที่ยืนยัน':b.status==='CONFIRMED'?'ยืนยันแล้ว':'ยกเลิกแล้ว';const klass=b.status==='PENDING'?'pending':b.status==='CONFIRMED'?'confirmed':'cancelled';return `<div class="booking-item"><div><strong>${escapeHtml(b.time)} น. · ${escapeHtml(b.service)} <span class="pill ${klass}">${status}</span></strong><div class="meta">👤 ${escapeHtml(b.name)} · 📞 ${escapeHtml(b.phone)}</div><div class="meta">รหัสจอง: ${escapeHtml(b.id)}</div></div><div class="staffrow">${b.status==='PENDING'?`<button class="btn small" data-confirm="${escapeHtml(b.id)}">ยืนยัน</button>`:''}${b.status!=='CANCELLED'?`<button class="btn small danger" data-cancel="${escapeHtml(b.id)}">ยกเลิก</button>`:''}</div></div>`;}).join('');
+    $('#adminBookings').querySelectorAll('[data-confirm]').forEach(btn=>btn.addEventListener('click',()=>withBusy(btn,async()=>{const r=await api('confirmBooking',adminPassword,btn.dataset.confirm);alert(r.message||'ดำเนินการเรียบร้อย');await loadAdminDay();availabilityCache={};monthStatusCache={};await renderAdminCalendar();await renderPublicCalendar();})));
+    $('#adminBookings').querySelectorAll('[data-cancel]').forEach(btn=>btn.addEventListener('click',()=>withBusy(btn,async()=>{if(!confirm('ยืนยันยกเลิกคิวนี้หรือไม่? ระบบจะแจ้งผู้จองผ่าน LINE'))return;const r=await api('cancelBooking',adminPassword,btn.dataset.cancel);alert(r.message||'ดำเนินการเรียบร้อย');await loadAdminDay();availabilityCache={};monthStatusCache={};await renderAdminCalendar();await renderPublicCalendar();})));
+  }catch(e){$('#adminBookings').innerHTML=`<div class="alert">${escapeHtml(e.message)}</div>`;}
+}
+$('#saveDayOff').addEventListener('click',async()=>withBusy($('#saveDayOff'),async()=>{clearError();if(!adminPassword)throw new Error('กรุณาเข้าสู่ระบบเจ้าหน้าที่');if(!adminDate)throw new Error('กรุณาเลือกวันที่');const reason=$('#dayOffReason').value.trim();if(!reason)throw new Error('กรุณาระบุเหตุผลวันหยุด');if(!confirm('กำหนด '+thaiDate(adminDate)+' เป็นวันหยุดใช่หรือไม่?'))return;const r=await api('addDayOff',adminPassword,adminDate,reason);alert(r.message||'บันทึกวันหยุดแล้ว');availabilityCache={};monthStatusCache={};await loadAdminDay();await renderAdminCalendar();await renderPublicCalendar();}));
+$('#removeDayOff').addEventListener('click',async()=>withBusy($('#removeDayOff'),async()=>{clearError();if(!adminPassword)throw new Error('กรุณาเข้าสู่ระบบเจ้าหน้าที่');if(!confirm('ยกเลิกวันหยุดของ '+thaiDate(adminDate)+' ใช่หรือไม่?'))return;const r=await api('deleteDayOff',adminPassword,adminDate);alert(r.message||'ลบวันหยุดแล้ว');availabilityCache={};monthStatusCache={};await loadAdminDay();await renderAdminCalendar();await renderPublicCalendar();}));
+$('#adminLogout').addEventListener('click',()=>{adminPassword='';$('#adminPassword').value='';$('#adminPanel').classList.add('hidden');$('#adminLoginCard').classList.remove('hidden');});
+
+// Main tab navigation.
+document.querySelectorAll('[data-tab]').forEach(btn=>btn.addEventListener('click',async()=>{
+  document.querySelectorAll('[data-tab]').forEach(el=>el.classList.toggle('active',el===btn));
+  $('#bookingSection').classList.toggle('hidden',btn.dataset.tab!=='booking');$('#historySection').classList.toggle('hidden',btn.dataset.tab!=='history');$('#adminSection').classList.toggle('hidden',btn.dataset.tab!=='admin');clearError();
+  if(btn.dataset.tab==='history')await loadHistory();if(btn.dataset.tab==='admin'&&adminPassword)await loadAdminDay();
+}));
+
+async function initLiff(){
+  try{
+    await liff.init({liffId:LIFF_ID});
+    if(!liff.isLoggedIn()&&!liff.isInClient()){
+      $('#welcome').textContent='เข้าสู่ระบบ LINE เพื่อจองคิว';
+      $('#loginArea').innerHTML='<button type="button" class="linebtn" id="lineLogin">เข้าสู่ระบบด้วย LINE</button>';
+      $('#lineLogin').addEventListener('click',()=>liff.login({redirectUri:location.href}));
+      return;
+    }
+    idToken=liff.getIDToken()||'';const decoded=liff.getDecodedIDToken?liff.getDecodedIDToken():null;
+    lineName=decoded&&decoded.name?String(decoded.name):'';
+    $('#adminLineId').textContent=(decoded&&decoded.sub)?String(decoded.sub):'ไม่พบ LINE User ID';
+    if(!idToken){$('#welcome').textContent='ยังไม่ได้รับ LINE ID token';$('#loginArea').innerHTML='<div class="note">โปรดตั้งค่า LIFF Scopes ให้มี openid และ profile แล้วเปิดระบบใหม่</div>';return;}
+    $('#welcome').textContent=lineName?'ยินดีต้อนรับ '+lineName:'เข้าสู่ระบบ LINE แล้ว';$('#patientName').value=lineName;
+    $('#loginArea').innerHTML='<span style="font-size:12px;color:#e8e2d2">เชื่อมต่อ LINE สำเร็จ ✓</span>';
+  }catch(e){$('#welcome').textContent='เชื่อมต่อ LINE ไม่สำเร็จ';$('#loginArea').innerHTML='<div class="note" style="color:#fff">ตรวจสอบ LIFF ID และการตั้งค่า LIFF แล้วลองเปิดใหม่</div>';console.error(e);}
+}
+
+(async function start(){
+  drawServices();drawSummary();renderTimes(null);await initLiff();
+  try{await renderPublicCalendar();}catch(e){showError('โหลดปฏิทินไม่สำเร็จ: '+e.message);}
+})();
+</script>
+</body>
+</html>
